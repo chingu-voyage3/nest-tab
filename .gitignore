@@ -19,3 +19,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# excluded because this should only be in your development(local)
+/src/styles/*.css
