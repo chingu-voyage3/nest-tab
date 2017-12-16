@@ -79,10 +79,10 @@ class App extends Component {
       }
     }
 
-    // add active class to icon of current activeApp
+    // add active class to appButton icon of current activeApp
     e.target.classList.add("active");
 
-    // closing the the app
+    // reset, closing the app
     if (e.target.id === this.state.sidebar.activeApp) {
       showApp = false;
       activeApp = "";
@@ -100,6 +100,8 @@ class App extends Component {
 
   activeApp() {
     let app = "";
+    // add your component here in this switch case & import your component above
+    // NOTE: add li in the .appButtons section, see reference below .appButtons section
     switch (this.state.sidebar.activeApp) {
       case "BookmarkApp":
         app = <Bookmark />;
