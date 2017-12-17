@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { getBackgroundImage } from "../Components/Background";
 import Bookmark from "../Components/Bookmark";
+import TodoApp from "../Components/To-Do";
 import "../styles/App.css";
 
 class App extends Component {
@@ -105,6 +106,9 @@ class App extends Component {
     switch (this.state.sidebar.activeApp) {
       case "BookmarkApp":
         app = <Bookmark />;
+        break;
+      case "TodoApp":
+        app = <TodoApp />;
         break;
       default:
         break;
