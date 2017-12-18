@@ -4,6 +4,7 @@ import { getBackgroundImage } from "../Components/Background";
 import Bookmark from "../Components/Bookmark";
 import TodoApp from "../Components/To-Do";
 import "../styles/App.css";
+import "../styles/ToDo.css";
 
 class App extends Component {
   constructor() {

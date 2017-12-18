@@ -18,9 +18,13 @@ class TodoList extends Component {
 class TodoApp extends Component {
   constructor(props) {
     super(props);
+    if (localStorage.getItem('todos') == null) {
+      localStorage.setItem('todos', JSON.stringify([]));
+    }
+
     this.state = {
       value: '',
-      todoList: []
+      todoList: JSON.parse(localStorage['todos'])
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -75,6 +79,10 @@ class TodoApp extends Component {
         item => item.id != itemRemoved
       )
     });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('todos', JSON.stringify(this.state.todoList));
   }
 
   render() {
