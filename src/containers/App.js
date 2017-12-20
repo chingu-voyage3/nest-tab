@@ -3,8 +3,10 @@ import React, { Component } from "react";
 import { getBackgroundImage } from "../Components/Background";
 import Bookmark from "../Components/Bookmark";
 import TodoApp from "../Components/To-Do";
+import Pomodoro from "../Components/Pomodoro";
 import "../styles/App.css";
 import "../styles/ToDo.css";
+import "../styles/Pomodoro.css";
 
 class App extends Component {
   constructor() {
@@ -111,6 +113,9 @@ class App extends Component {
       case "TodoApp":
         app = <TodoApp />;
         break;
+      case "Pomodoro":
+        app = <Pomodoro />;
+        break;
       default:
         break;
     }
@@ -143,6 +148,15 @@ class App extends Component {
                 onClick={this.switchApp}
               />
               <p>Bookmark</p>
+            </li>
+            <li>
+              <i
+                id="Pomodoro"
+                className="appButton fa fa-clock-o"
+                aria-hidden="true"
+                onClick={this.switchApp}
+              />
+              <p>Pomodoro</p>
             </li>
           </ul>
         </div>
