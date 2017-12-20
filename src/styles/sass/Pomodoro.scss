@@ -1,0 +1,23 @@
+.pomodoro {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+    h1, h2 {
+        color: #000;
+        margin: 0;
+        padding: 50px 0 30px;
+    }
+    button {
+        color: #000;
+    }
+    .startButton {
+        background-color: #357AE8;
+        padding: 5px 20px;
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        margin: 5px 10px;
+        box-shadow: 1px 3px 8px 1px #a4a6ab;
+    }
+}
