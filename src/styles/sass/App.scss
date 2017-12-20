@@ -52,6 +52,10 @@ body {
       #BookmarkApp.active {
         color: #4285f4;
       }
+      #TodoApp:hover,
+      #TodoApp.active {
+        color: #4285f4;
+      }
     }
   }
 }
