@@ -11,6 +11,17 @@ function StopButton(props) {
     return (<button className="stopButton" onClick={props.onClick}>Stop</button>);
 }
 
+function TaskPicker(props) {
+    return(
+        <select>
+          {props.todoList.map((item) => 
+          <option value={item.title} id={item.id}>
+              {item.title}
+          </option>)}
+        </select>
+    );
+}
+
 class CountdownTimer extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +29,8 @@ class CountdownTimer extends Component {
         this.state = {
             pomoMinutes: 25,
             pomoSeconds: 0,
-            isRunning: false
+            isRunning: false,
+            todoList: JSON.parse(localStorage['todos'])
         };
 
         this.tick = this.tick.bind(this);
@@ -46,8 +58,6 @@ class CountdownTimer extends Component {
 
     startTimer() {
         this.setState({
-            // pomoMinutes: this.state.pomoMinutes - 1,
-            // pomoSeconds: this.state.pomoSeconds - 1,
             isRunning: true
         });
         this.intervalID = setInterval(() => this.tick(), 1000);
@@ -63,8 +73,8 @@ class CountdownTimer extends Component {
     stopTimer() {
         clearInterval(this.intervalID);
         this.setState({
-            pomoMinutes: 2,
-            pomoSeconds: 60,
+            pomoMinutes: 25,
+            pomoSeconds: 0,
             isRunning: false
         })
     }
@@ -74,11 +84,21 @@ class CountdownTimer extends Component {
         return (
             <div>
                 <h1>Pomodoro Timer</h1>
-                <h2>{this.state.pomoMinutes}m : {this.state.pomoSeconds < 10 ? "0" : ""}
-                {this.state.pomoSeconds}s </h2>
+                <div className="taskPicker">
+                    <h4>Pick a task to work on</h4>
+                    <TaskPicker todoList={this.state.todoList}/>
+                </div>
+                <div className="timeBox">
+                    <div className="innerTimeBox">
+                        <h2>{this.state.pomoMinutes}m : {this.state.pomoSeconds < 10 ? "0" : ""}
+                        {this.state.pomoSeconds}s </h2>
+                    </div>
+                </div>
+                <div className="timeButtons">
                 <StartButton start={this.startTimer} pause={this.pauseTimer}
                 isRunning={this.state.isRunning}/>
                 <StopButton onClick={this.stopTimer}/>
+                </div>
             </div>
         );
     }
