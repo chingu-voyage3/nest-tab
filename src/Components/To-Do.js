@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
 
+class TaskDetails extends Component {
+  render() {
+    return(
+      <div className="taskDetails">
+        <textarea onChange={this.props.handleDescription(this.props.todoItem.id)} placeholder="Write some details..."
+        value={this.props.todoItem.description} id={"taskDetails" + this.props.todoItem.id}>
+        </textarea>
+      </div>
+    );
+  }
+}
+
 class TodoList extends Component {
   render() {
     return(
       <ul>
         {this.props.todoList.map((item) => 
-        <li key={item.id} id={item.id}>
-          <span className={"status " + (item.isDone ? "done" : "")} onClick={this.props.markDone}>✓</span>
-            {item.title}
-          <span className="remove" onClick={this.props.removeTask}>✕</span>
-        </li>)}
+        <div className="itemContainer">
+          <li key={item.id} id={item.id}>
+            <span onClick={this.props.markDone(item.id)} className={"status " + (item.isDone ? "done" : "")}>
+              <i onClick={this.props.markDone(item.id)} className="material-icons">check_circle</i>
+            </span>
+              {item.title}
+            <span className="expandTask" onClick={this.props.expandTask(item.id)}>
+              <i onClick={this.props.expandTask} class="material-icons">expand_more</i>
+            </span> 
+            <span className="remove">
+              <i onClick={this.props.removeTask(item.id)} class="material-icons">delete</i>
+            </span>
+          </li>
+          <TaskDetails todoItem={item} handleDescription={this.props.handleDescription}/>
+        </div>)}
       </ul>
     );
   }
@@ -31,6 +53,7 @@ class TodoApp extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.removeTask = this.removeTask.bind(this);
     this.markDone = this.markDone.bind(this);
+    this.expandTask = this.expandTask.bind(this);
   }
 
   handleChange(event) {
@@ -44,7 +67,9 @@ class TodoApp extends Component {
     const currentItem = {
       id: this.state.todoList.length + 1,
       title: this.state.value,
-      isDone: false
+      isDone: false,
+      description: '',
+      workTime: false
     };
 
     if(this.state.value != '') {
@@ -57,11 +82,10 @@ class TodoApp extends Component {
     }    
   }
 
-  markDone(event) {
+  markDone = param => event => {
     const newList = this.state.todoList.map( item => {
-      if (item.id == event.target.parentNode.id) {
-        let toggleStatus = item.isDone ? false : true;
-        return Object.assign({}, item, {isDone: toggleStatus});
+      if (item.id == param) {
+        return Object.assign({}, item, {isDone: !item.isDone});
       }
       return item;
     });
@@ -71,12 +95,27 @@ class TodoApp extends Component {
     }, () => console.log(this.state.todoList));
   }
 
-  removeTask(event) {
-    const itemRemoved = (event.target.parentNode.id);
+  removeTask = param => event => {
     const { todoList } = this.state;
     this.setState({
       todoList: todoList.filter(
-        item => item.id != itemRemoved
+        item => item.id != param
+      )
+    });
+  }
+
+  expandTask = param => event => {
+    const ele = "taskDetails" + param;
+    document.getElementById(ele).classList.toggle("expanded");
+  }
+
+  handleDescription = param => event => {
+    const {todoList} = this.state;
+    this.setState({
+      todoList: todoList.map(
+        item => (
+          item.id == param ? Object.assign({}, item, {description: event.target.value})
+        : item ) 
       )
     });
   }
@@ -93,7 +132,8 @@ class TodoApp extends Component {
           <button>Add To-Do</button>
         </form>
         <TodoList todoList={this.state.todoList} markDone={this.markDone}
-        removeTask={this.removeTask}/>
+        removeTask={this.removeTask} expandTask={this.expandTask}
+        handleDescription={this.handleDescription}/>
       </div>
     );
   }
