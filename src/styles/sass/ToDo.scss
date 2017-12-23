@@ -3,10 +3,11 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(45deg,#FBCA88,#EF69AD);
-    text-align: center;
+    // text-align: center;
     font-size: 1.5em;
     form {
-        margin: 20px 0;
+        width: 90%;
+        margin: 20px auto;
     }
     input, button {
         border: none;
@@ -24,40 +25,57 @@
         background-color: #508EF5;
         color: #fff;
     }
-    ul li {
-        list-style-type: none;
-        color: #fff;
-        margin: 15px 0;
-        font-size: 0.7em;
-        &:hover {
-            span.remove {
-                visibility: visible;
+    ul {
+        .itemContainer {
+            li {
+                list-style-type: none;
+                color: #fff;
+                margin: 15px 0;
+                font-size: 0.7em;
+                &:hover {
+                    span.remove, span.expandTask {
+                        visibility: visible;
+                    }
+                }
+                span.status {
+                    display: inline-block;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    color: #ccc;
+                }
+                span.done {
+                    color: #fff;
+                }
+                span.remove, span.expandTask {
+                    display: inline-block;
+                    margin-left: 15px;
+                    vertical-align: middle;
+                    visibility: hidden;
+                    color: rgb(245, 225, 226);
+                }
+                span.status, span.remove, span.expandTask {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
             }
-        }
-        span.status {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            font-size: 0.7em;
-            padding: 3px;
-            border-radius: 50%;
-            margin-right: 10px;
-            border: 2px solid #ccc;
-            color: #ccc;
-        }
-        span.done {
-            border: 2px solid #fff;
-            color: #fff;
-        }
-        span.remove {
-            display: inline-block;
-            margin-left: 15px;
-            visibility: hidden;
-            color: rgb(173, 24, 37);
-        }
-        span.status, span.remove {
-            &:hover {
-                cursor: pointer;
+            .taskDetails {
+                textarea {
+                    width: 200px;
+                    height: 50px;
+                    background-color: rgba($color: #000000, $alpha: 0);
+                    outline: none;
+                    border: none;
+                    font-size: 16px;
+                    color: #fff;
+                    display: none;
+                    &:hover {
+                        border: 1px solid white;
+                    }
+                }
+                textarea.expanded {
+                    display: block;
+                }
             }
         }
     }
