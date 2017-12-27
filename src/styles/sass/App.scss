@@ -49,11 +49,11 @@ body {
       }
 
       #BookmarkApp:hover,
-      #BookmarkApp.active {
-        color: #4285f4;
-      }
+      #BookmarkApp.active,
       #TodoApp:hover,
-      #TodoApp.active {
+      #TodoApp.active,
+      #Pomodoro:hover,
+      #Pomodoro.active {
         color: #4285f4;
       }
     }
