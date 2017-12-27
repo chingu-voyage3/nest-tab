@@ -13,12 +13,15 @@ function StopButton(props) {
 
 function TaskPicker(props) {
     return(
-        <select>
-          {props.todoList.map((item) => 
-          <option value={item.title} id={item.id}>
-              {item.title}
-          </option>)}
-        </select>
+        <label>
+            Pick a task to work on: 
+            <select value={props.chosenTask} onChange={props.assignTask}>
+                {props.todoList.map((item) => 
+                <option value={item.title} id={item.id}>
+                    {item.title}
+                </option>)}
+            </select>
+        </label>
     );
 }
 
@@ -30,13 +33,21 @@ class CountdownTimer extends Component {
             pomoMinutes: 25,
             pomoSeconds: 0,
             isRunning: false,
-            todoList: JSON.parse(localStorage['todos'])
+            todoList: JSON.parse(localStorage['todos']),
+            chosenTask: JSON.parse(localStorage['todos'])[0]
         };
 
         this.tick = this.tick.bind(this);
         this.startTimer = this.startTimer.bind(this);
         this.pauseTimer = this.pauseTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
+        this.assignTask = this.assignTask.bind(this);
+    }
+
+    assignTask(event) {
+        this.setState({
+            chosenTask: event.target.value
+        });
     }
 
     tick() {
@@ -47,12 +58,21 @@ class CountdownTimer extends Component {
         } else {
             this.setState({
                 pomoMinutes: this.state.pomoMinutes - 1,
-                pomoSeconds: 59
+                pomoSeconds: 59,
+                todoList: (this.state.todoList.map(item => (
+                    item.title == this.state.chosenTask 
+                    ? Object.assign({}, item, {workTime: item.workTime+1}) : item
+                )))
+            }, () => {
+                localStorage.setItem('todos', JSON.stringify(this.state.todoList));
             })
         }
 
         if (this.state.pomoMinutes == 0 && this.state.pomoSeconds == 0) {
             clearInterval(this.intervalID);
+            this.setState({
+                isRunning: false
+            });
         }
     }
 
@@ -85,8 +105,8 @@ class CountdownTimer extends Component {
             <div>
                 <h1>Pomodoro Timer</h1>
                 <div className="taskPicker">
-                    <h4>Pick a task to work on</h4>
-                    <TaskPicker todoList={this.state.todoList}/>
+                    <TaskPicker todoList={this.state.todoList} assignTask={this.assignTask}
+                    chosenTask={this.state.chosenTask}/>
                 </div>
                 <div className="timeBox">
                     <div className="innerTimeBox">
