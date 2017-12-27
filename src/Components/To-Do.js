@@ -69,7 +69,7 @@ class TodoApp extends Component {
       title: this.state.value,
       isDone: false,
       description: '',
-      workTime: false
+      workTime: 0
     };
 
     if(this.state.value != '') {
