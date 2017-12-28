@@ -105,8 +105,11 @@ class CountdownTimer extends Component {
             <div>
                 <h1>Pomodoro Timer</h1>
                 <div className="taskPicker">
-                    <TaskPicker todoList={this.state.todoList} assignTask={this.assignTask}
-                    chosenTask={this.state.chosenTask}/>
+                    {this.state.isRunning
+                        ? <p>Working on: {this.state.chosenTask}</p>
+                        : <TaskPicker todoList={this.state.todoList} assignTask={this.assignTask}
+                        chosenTask={this.state.chosenTask}/>
+                    }
                 </div>
                 <div className="timeBox">
                     <div className="innerTimeBox">
