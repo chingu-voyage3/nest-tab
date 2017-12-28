@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 
 class TaskDetails extends Component {
   render() {
+    const hour = Math.trunc(this.props.todoItem.workTime/60);
+    const minute = this.props.todoItem.workTime%60;
+    const workStat = hour == 0 ? "Worked "+minute+" minutes on this task."
+          : "Worked "+hour+" hour and "+minute+" minutes on this task."
     return(
-      <div className="taskDetails">
+      <div className="taskDetails" id={"taskDetails" + this.props.todoItem.id}>
         <textarea onChange={this.props.handleDescription(this.props.todoItem.id)} placeholder="Write some details..."
-        value={this.props.todoItem.description} id={"taskDetails" + this.props.todoItem.id}>
+        value={this.props.todoItem.description}>
         </textarea>
+        <p>
+          {!this.props.todoItem.workTime 
+          ? "You haven't logged any time working on this."
+          : workStat}
+        </p>
       </div>
     );
   }
