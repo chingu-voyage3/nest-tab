@@ -60,6 +60,8 @@
                 }
             }
             .taskDetails {
+                display: none;
+                margin-bottom: 50px;
                 textarea {
                     width: 200px;
                     height: 50px;
@@ -68,14 +70,18 @@
                     border: none;
                     font-size: 16px;
                     color: #fff;
-                    display: none;
                     &:hover {
                         border: 1px solid white;
                     }
                 }
-                textarea.expanded {
-                    display: block;
+                p {
+                    font-size: 14px;
+                    margin: 0;
+                    color: #eee;
                 }
+            }
+            .taskDetails.expanded {
+                display: block;
             }
         }
     }
