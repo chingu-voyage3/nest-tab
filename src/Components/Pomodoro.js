@@ -17,9 +17,9 @@ function TaskPicker(props) {
             Pick a task to work on: 
             <select value={props.chosenTask} onChange={props.assignTask}>
                 {props.todoList.map((item) => 
-                <option value={item.title} id={item.id}>
+                !item.isDone ? <option value={item.title} id={item.id}>
                     {item.title}
-                </option>)}
+                </option> : null)}
             </select>
         </label>
     );
