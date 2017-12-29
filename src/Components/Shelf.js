@@ -17,7 +17,7 @@ function ShelfList(props) {
         <div className="shelfList">
             <ul>
                 {props.shelfList.map(item =>
-                    <li><a href={item.url}>
+                    <li><a href={item.url} target="_blank">
                         {item.url}
                     </a></li>
                 )}
