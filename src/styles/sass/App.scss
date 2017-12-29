@@ -53,7 +53,9 @@ body {
       #TodoApp:hover,
       #TodoApp.active,
       #Pomodoro:hover,
-      #Pomodoro.active {
+      #Pomodoro.active,
+      #Shelf:hover,
+      #Shelf.active {
         color: #4285f4;
       }
     }
