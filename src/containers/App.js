@@ -4,6 +4,7 @@ import { getBackgroundImage } from "../Components/Background";
 import Bookmark from "../Components/Bookmark";
 import TodoApp from "../Components/To-Do";
 import Pomodoro from "../Components/Pomodoro";
+import Shelf from "../Components/Shelf";
 import "../styles/App.css";
 import "../styles/ToDo.css";
 import "../styles/Pomodoro.css";
@@ -116,6 +117,9 @@ class App extends Component {
       case "Pomodoro":
         app = <Pomodoro />;
         break;
+      case "Shelf":
+        app = <Shelf />;
+        break;
       default:
         break;
     }
@@ -157,6 +161,15 @@ class App extends Component {
                 onClick={this.switchApp}
               />
               <p>Pomodoro</p>
+            </li>
+            <li>
+              <i
+                id="Shelf"
+                className="appButton fa fa-list"
+                aria-hidden="true"
+                onClick={this.switchApp}
+              />
+              <p>Shelf</p>
             </li>
           </ul>
         </div>
