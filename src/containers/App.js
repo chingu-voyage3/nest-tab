@@ -8,6 +8,7 @@ import Shelf from "../Components/Shelf";
 import "../styles/App.css";
 import "../styles/ToDo.css";
 import "../styles/Pomodoro.css";
+import "../styles/Shelf.css";
 
 class App extends Component {
   constructor() {
