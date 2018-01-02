@@ -17,9 +17,11 @@ function ShelfList(props) {
         <div className="shelfList">
             <ul>
                 {props.shelfList.map(item =>
-                    <li><a href={item.url} target="_blank">
+                    <li key={item.id}><a href={item.url} target="_blank">
                         {item.url}
-                    </a></li>
+                        </a>
+                        <i onClick={props.removeItem(item.id)} className="material-icons">delete</i>
+                    </li>
                 )}
             </ul>
         </div>
@@ -41,6 +43,7 @@ class Shelf extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.removeItem = this.removeItem.bind(this);
     }
 
     handleChange(event) {
@@ -52,6 +55,7 @@ class Shelf extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const item = {
+            id: this.state.shelfList.length + 1,
             url: this.state.inputUrl,
             title: null,
             icon: null,
@@ -60,6 +64,16 @@ class Shelf extends Component {
         this.setState({
             shelfList: this.state.shelfList.concat(item),
             inputUrl: ""
+        });
+    }
+
+    removeItem = param => event => {
+        const { shelfList } = this.state;
+
+        this.setState({
+            shelfList: shelfList.filter(
+                item => item.id != param
+            )
         });
     }
 
@@ -72,7 +86,7 @@ class Shelf extends Component {
             <div className="shelf">
                 <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit} />
-                <ShelfList shelfList={this.state.shelfList} />
+                <ShelfList shelfList={this.state.shelfList} removeItem={this.removeItem}/>
             </div>
         );
     }
