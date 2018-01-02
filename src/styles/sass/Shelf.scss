@@ -1,0 +1,52 @@
+.shelf {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    .shelfInput {
+        input, button {
+            font-size: 18px;
+            padding: 5px;
+        }
+        input {
+            width: 70%;
+            border: none;
+            outline: none;
+            background-color: #fff;
+        }
+        button {
+            width: 25%;
+            margin-left: 2%;
+            background-color: #fff;
+            color: blue;
+        }
+    }
+    .shelfList {
+        ul {
+            padding-left: 0;
+            li {
+                list-style-type: none;
+                background-color: #fff;
+                margin: 20px 0;
+                padding: 5px 10px;
+                border-radius: 5px;
+                box-shadow: 2px 2px 8px 3px #e6e6e6;
+                a {
+                    text-decoration: none;
+                    color: rgb(0, 117, 190);
+                }
+                i {
+                    color: #000;
+                    vertical-align: middle;
+                    visibility: hidden;
+                    margin-left: 5px;
+                    cursor: pointer;
+                }
+                &:hover {
+                    i {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+}
