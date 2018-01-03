@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const metaInspector = require('node-metainspector');
+const urlMetadata = require('url-metadata');
 
 function ShelfInput(props) {
     return(
@@ -55,15 +55,19 @@ class Shelf extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const meta = new metaInspector('https://cors-anywhere.herokuapp.com/'+this.state.inputUrl);
-        meta.on("fetch", function() {
-            console.log(meta.title);
-            console.log(meta.description);
-            console.log(meta.image);
-        });
-        meta.on("error", function(err) {
-            console.log(err);
-        });
+
+        urlMetadata("https://cors-anywhere.herokuapp.com/"+this.state.inputUrl).then(
+            function(metadata) {
+                console.log(metadata.title);
+                console.log(metadata.description);
+                console.log(metadata.image);
+                console.log(metadata);
+            },
+            function(error) {
+                console.log(error);
+            }
+        );
+
         const item = {
             id: this.state.shelfList.length + 1,
             url: this.state.inputUrl,
@@ -74,7 +78,7 @@ class Shelf extends Component {
         this.setState({
             shelfList: this.state.shelfList.concat(item),
             inputUrl: ""
-        }, () => meta.fetch());
+        });
     }
 
     removeItem = param => event => {
