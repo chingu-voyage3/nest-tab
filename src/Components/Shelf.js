@@ -18,10 +18,13 @@ function ShelfList(props) {
         <div className="shelfList">
             <ul>
                 {props.shelfList.map(item =>
-                    <li key={item.id}><a href={item.url} target="_blank">
+                    <li key={item.id}>
+                        <a href={item.url} target="_blank">{item.title ? item.title : "Loading Title..."}</a>
+                        <a href={item.url} target="_blank" className="url">
                         {item.url}
                         </a>
                         <i onClick={props.removeItem(item.id)} className="material-icons">delete</i>
+                        <p>{item.description ? item.description : "Loading description..."}</p>
                     </li>
                 )}
             </ul>
@@ -45,6 +48,7 @@ class Shelf extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.removeItem = this.removeItem.bind(this);
+        this.updateMeta = this.updateMeta.bind(this);
     }
 
     handleChange(event) {
@@ -56,29 +60,41 @@ class Shelf extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
+        const item = {
+            id: this.state.shelfList.length + 1,
+            url: this.state.inputUrl,
+            title: null,
+            description: null,
+            icon: null,
+            checked: false
+        }
+
         urlMetadata("https://cors-anywhere.herokuapp.com/"+this.state.inputUrl).then(
-            function(metadata) {
-                console.log(metadata.title);
-                console.log(metadata.description);
-                console.log(metadata.image);
-                console.log(metadata);
+            (metadata) => {
+                const itemWithMeta = Object.assign({}, item, {
+                    title: metadata.title,
+                    description: metadata.description,
+                    icon: metadata.image
+                });
+                this.updateMeta(itemWithMeta);
             },
             function(error) {
                 console.log(error);
             }
         );
 
-        const item = {
-            id: this.state.shelfList.length + 1,
-            url: this.state.inputUrl,
-            title: null,
-            icon: null,
-            checked: false
-        }
         this.setState({
             shelfList: this.state.shelfList.concat(item),
             inputUrl: ""
         });
+    }
+
+    updateMeta(meta) {
+        this.setState({
+            shelfList: this.state.shelfList.map(
+                item => item.id == meta.id ? meta : item
+            )
+        })
     }
 
     removeItem = param => event => {
