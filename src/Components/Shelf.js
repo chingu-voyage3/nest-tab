@@ -17,8 +17,8 @@ function ShelfList(props) {
     return(
         <div className="shelfList">
             <ul>
-                {props.shelfList.map(item =>
-                    <li key={item.id}>
+                {props.shelfList.map((item, index) =>
+                    <li key={index}>
                         <a href={item.url} target="_blank">{item.title ? item.title : "Loading Title..."}</a>
                         <a href={item.url} target="_blank" className="url">
                         {item.url}
