@@ -18,12 +18,13 @@ function ShelfList(props) {
         <div className="shelfList">
             <ul>
                 {props.shelfList.map((item, index) =>
+                    !item.checked &&
                     <li key={index}>
                         {item.title && <a href={item.url} target="_blank">{item.title}</a>}
                         <a href={item.url} target="_blank" className="url">
                         {item.url}
                         </a>
-                        <i onClick={props.removeItem(item.id)} className="material-icons">delete</i>
+                        <i onClick={props.removeItem(item.id)} className="material-icons">check_circle</i>
                         {item.description && <p>{item.description}</p>}
                     </li>
                 )}
@@ -62,6 +63,7 @@ class Shelf extends Component {
 
         const item = {
             id: this.state.shelfList.length + 1,
+            checked: false,
             url: this.state.inputUrl,
             title: null,
             description: null,
@@ -101,14 +103,16 @@ class Shelf extends Component {
         const { shelfList } = this.state;
 
         this.setState({
-            shelfList: shelfList.filter(
-                item => item.id != param
+            shelfList: shelfList.map(
+                item => item.id == param
+                ? Object.assign({}, item, {checked: true}) : item
             )
         });
     }
 
     componentDidUpdate() {
         localStorage.setItem("shelfList", JSON.stringify(this.state.shelfList));
+        // localStorage.removeItem("shelfList");
     }
 
     render() {
