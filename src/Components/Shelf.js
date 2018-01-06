@@ -24,7 +24,7 @@ function ShelfList(props) {
                         <a href={item.url} target="_blank" className="url">
                         {item.url}
                         </a>
-                        <i onClick={props.removeItem(item.id)} className="material-icons">check_circle</i>
+                        <i onClick={props.markChecked(item.id)} className="material-icons">check_circle</i>
                         {item.description && <p>{item.description}</p>}
                     </li>
                 )}
@@ -48,7 +48,7 @@ class Shelf extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.removeItem = this.removeItem.bind(this);
+        this.markChecked = this.markChecked.bind(this);
         this.updateMeta = this.updateMeta.bind(this);
     }
 
@@ -99,7 +99,7 @@ class Shelf extends Component {
         })
     }
 
-    removeItem = param => event => {
+    markChecked = param => event => {
         const { shelfList } = this.state;
 
         this.setState({
@@ -120,7 +120,7 @@ class Shelf extends Component {
             <div className="shelf">
                 <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit} />
-                <ShelfList shelfList={this.state.shelfList} removeItem={this.removeItem}/>
+                <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked}/>
             </div>
         );
     }
