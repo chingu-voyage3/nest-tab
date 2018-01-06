@@ -19,12 +19,12 @@ function ShelfList(props) {
             <ul>
                 {props.shelfList.map((item, index) =>
                     <li key={index}>
-                        <a href={item.url} target="_blank">{item.title ? item.title : "Loading Title..."}</a>
+                        {item.title && <a href={item.url} target="_blank">{item.title}</a>}
                         <a href={item.url} target="_blank" className="url">
                         {item.url}
                         </a>
                         <i onClick={props.removeItem(item.id)} className="material-icons">delete</i>
-                        <p>{item.description ? item.description : "Loading description..."}</p>
+                        {item.description && <p>{item.description}</p>}
                     </li>
                 )}
             </ul>
