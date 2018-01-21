@@ -2,6 +2,7 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px 0;
+    position: relative;
     .shelfInput {
         input, button {
             font-size: 18px;
@@ -20,6 +21,26 @@
             color: blue;
         }
     }
+    .shelfSwitcher {
+        margin: 10px auto;
+        text-align: center;
+        .switches {
+            display: inline-block;
+            background-color: #d3e1ff;
+            border-radius: 20px;
+            a {
+                display: inline-block;
+                padding: 5px 15px;
+                font-size: 16px;
+                text-decoration: none;
+            }
+            a.active {
+                background-color: #1e79e0;
+                border-radius: 20px;
+                color: #fff;
+            }
+        }
+    }   
     .shelfList {
         ul {
             padding-left: 0;
