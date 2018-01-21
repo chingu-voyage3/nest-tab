@@ -16,9 +16,11 @@ function ShelfInput(props) {
 function ShelfSwitch(props) {
     return(
         <div className="shelfSwitcher">
-            <a href="#" name="undone" onClick={props.filterList}>Pending</a>
-            <a href="#" name="done" onClick={props.filterList}>Done</a>
-            <a href="#" name="all" onClick={props.filterList}>All</a>
+            <div className="switches">
+                <a href="#" name="undone" onClick={props.filterList} className="active">Pending</a>
+                <a href="#" name="done" onClick={props.filterList}>Done</a>
+                <a href="#" name="all" onClick={props.filterList}>All</a>
+            </div>
         </div>
     );
 }
@@ -130,6 +132,12 @@ class Shelf extends Component {
     }
 
     filterList(event) {
+        event.preventDefault();
+
+        //Adding/removing class for highlighting
+        document.querySelector("a.active").classList.remove("active");
+        event.target.classList.add("active");
+
         this.setState({
             filter: event.target.name
         }, () => console.log(this.state.filter))
