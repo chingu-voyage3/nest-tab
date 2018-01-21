@@ -13,12 +13,29 @@ function ShelfInput(props) {
     );
 }
 
+function ShelfSwitch(props) {
+    return(
+        <div className="shelfSwitcher">
+            <a href="#" name="undone" onClick={props.filterList}>Pending</a>
+            <a href="#" name="done" onClick={props.filterList}>Done</a>
+            <a href="#" name="all" onClick={props.filterList}>All</a>
+        </div>
+    );
+}
+
 function ShelfList(props) {
+    let list = props.shelfList;
+
+    if (props.filter == "undone") {
+        list = list.filter(item => !item.checked);
+    } else if(props.filter == "done") {
+        list = list.filter(item => item.checked);
+    }
+
     return(
         <div className="shelfList">
             <ul>
-                {props.shelfList.map((item, index) =>
-                    !item.checked &&
+                {list.map((item, index) =>
                     <li key={index}>
                         {item.title && <a href={item.url} target="_blank">{item.title}</a>}
                         <a href={item.url} target="_blank" className="url">
@@ -43,13 +60,15 @@ class Shelf extends Component {
 
         this.state = {
             inputUrl: "",
-            shelfList: JSON.parse(localStorage['shelfList'])
+            shelfList: JSON.parse(localStorage['shelfList']),
+            filter: "undone"
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.markChecked = this.markChecked.bind(this);
         this.updateMeta = this.updateMeta.bind(this);
+        this.filterList = this.filterList.bind(this);
     }
 
     handleChange(event) {
@@ -110,6 +129,12 @@ class Shelf extends Component {
         });
     }
 
+    filterList(event) {
+        this.setState({
+            filter: event.target.name
+        }, () => console.log(this.state.filter))
+    }
+
     componentDidUpdate() {
         localStorage.setItem("shelfList", JSON.stringify(this.state.shelfList));
         // localStorage.removeItem("shelfList");
@@ -120,7 +145,8 @@ class Shelf extends Component {
             <div className="shelf">
                 <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit} />
-                <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked}/>
+                <ShelfSwitch filterList={this.filterList}/>
+                <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked} filter={this.state.filter}/>
             </div>
         );
     }
