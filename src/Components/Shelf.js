@@ -43,7 +43,7 @@ function ShelfList(props) {
                         <a href={item.url} target="_blank" className="url">
                         {item.url}
                         </a>
-                        <i onClick={props.markChecked(item.id)} className="material-icons">check_circle</i>
+                        <i onClick={props.markChecked(item.id)} className={item.checked ? "material-icons done" : "material-icons"}>check_circle</i>
                         {item.description && <p>{item.description}</p>}
                     </li>
                 )}
@@ -106,10 +106,12 @@ class Shelf extends Component {
             }
         );
 
-        this.setState({
-            shelfList: this.state.shelfList.concat(item),
-            inputUrl: ""
-        });
+        if (this.state.inputUrl != "") {
+            this.setState({
+                shelfList: this.state.shelfList.concat(item),
+                inputUrl: ""
+            });
+        }
     }
 
     updateMeta(meta) {
@@ -126,7 +128,7 @@ class Shelf extends Component {
         this.setState({
             shelfList: shelfList.map(
                 item => item.id == param
-                ? Object.assign({}, item, {checked: true}) : item
+                ? Object.assign({}, item, {checked: !item.checked}) : item
             )
         });
     }
