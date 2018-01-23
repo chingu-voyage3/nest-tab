@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { getBackgroundImage } from "../Components/Background";
+import { formatTime } from "../utils/formatTime";
 import Bookmark from "../Components/Bookmark";
 import TodoApp from "../Components/To-Do";
 import Pomodoro from "../Components/Pomodoro";
@@ -22,7 +23,7 @@ class App extends Component {
         backgroundSize: "cover",
         minHeight: "100vh"
       },
-      time: this.formatTime(),
+      time: formatTime(),
       sidebar: {
         activeApp: "",
         showApp: false
@@ -42,26 +43,9 @@ class App extends Component {
     });
   }
 
-  formatTime() {
-    const currentDate = new Date();
-    const hourString =
-      currentDate.getHours() % 12 === 0 ? "12" : currentDate.getHours() % 12;
-    const minuteString =
-      currentDate.getMinutes() < 10
-        ? "0" + currentDate.getMinutes()
-        : currentDate.getMinutes();
-    const timeString =
-      hourString +
-      ":" +
-      minuteString +
-      (currentDate.getHours() >= 12 ? " PM" : " AM");
-
-    return timeString;
-  }
-
   tick() {
     this.setState({
-      time: this.formatTime()
+      time: formatTime()
     });
   }
 
