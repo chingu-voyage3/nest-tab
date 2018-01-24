@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import icon from "../assets/icons/icon.png";
+import "../styles/AppButtons.css";
 
 function AppButtons(props) {
     return(
