@@ -6,6 +6,7 @@ import Pomodoro from "../Components/Pomodoro";
 import Shelf from "../Components/Shelf";
 import AppButtons from "../Components/AppButtons";
 import AppViewer from "./AppViewer";
+import "../styles/AppArea.css";
 
 
 const listOfApps = [
