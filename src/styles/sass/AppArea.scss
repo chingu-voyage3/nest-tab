@@ -1,0 +1,12 @@
+.appArea {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-areas: 
+        "app"
+        "appButtons"
+        "footer";
+    justify-items: center;
+    align-items: center;
+    align-self: center;
+}

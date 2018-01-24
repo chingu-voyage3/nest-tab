@@ -1,0 +1,19 @@
+.appButtons {
+    grid-area: appButtons;
+    ul {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 10px;
+        li {
+            list-style-type: none;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #fff;
+            img {
+                display: inline-block;
+            }
+        }
+    }
+}
