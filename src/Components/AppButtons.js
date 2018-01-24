@@ -6,7 +6,7 @@ function AppButtons(props) {
         <div className="appButtons">
             <ul>
                 {props.listOfApps.map(item => 
-                    <li name={item.app}>
+                    <li name={item.app} onClick={props.handleClick}>
                         <img src={icon} alt="Click to Open/Close app"/>
                         <p>{item.title}</p>
                     </li>
