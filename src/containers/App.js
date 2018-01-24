@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { getBackgroundImage } from "../Components/Background";
 import { formatTime } from "../utils/formatTime";
+import AppIconContainer from "./appIconContainer";
 import Bookmark from "../Components/Bookmark";
 import TodoApp from "../Components/To-Do";
 import Pomodoro from "../Components/Pomodoro";
@@ -10,6 +11,7 @@ import "../styles/App.css";
 import "../styles/ToDo.css";
 import "../styles/Pomodoro.css";
 import "../styles/Shelf.css";
+import appIconContainer from "./appIconContainer";
 
 class App extends Component {
   constructor() {
@@ -105,7 +107,8 @@ class App extends Component {
           <i className="fa fa-refresh" aria-hidden="true" />
         </button>
         <div className="time">{this.state.time}</div>
-        <div className="appButtons">
+        <AppIconContainer />
+        {/* <div className="appButtons">
           <ul>
             <li>
               <i
@@ -144,7 +147,7 @@ class App extends Component {
               <p>Shelf</p>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div
           className="sidebar"
           style={
