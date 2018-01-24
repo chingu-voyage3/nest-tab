@@ -1,0 +1,18 @@
+.appContainer {
+    width: 50%;
+    height: 40%;
+    position: absolute;
+    // top: 0;
+    bottom: 0;
+    left: 25%;
+    // right: auto;
+    // display: none;
+    border-radius: 8px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.appContainer.active {
+    display: block;
+    opacity: 1;
+}
