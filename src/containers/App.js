@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import { getBackgroundImage } from "../Components/Background";
-import { formatTime } from "../utils/formatTime";
-import AppIconContainer from "./appIconContainer";
+import AppIconContainer from "./AppIconContainer";
+import CurrentTime from "../Components/CurrentTime";
 import Bookmark from "../Components/Bookmark";
 import TodoApp from "../Components/To-Do";
 import Pomodoro from "../Components/Pomodoro";
@@ -11,7 +11,6 @@ import "../styles/App.css";
 import "../styles/ToDo.css";
 import "../styles/Pomodoro.css";
 import "../styles/Shelf.css";
-import appIconContainer from "./appIconContainer";
 
 class App extends Component {
   constructor() {
@@ -21,7 +20,6 @@ class App extends Component {
       bgStyle: {
         backgroundImage: "url('https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height+"')"
       },
-      time: formatTime(),
       sidebar: {
         activeApp: "",
         showApp: false
@@ -29,21 +27,6 @@ class App extends Component {
     };
 
     this.switchApp = this.switchApp.bind(this);
-  }
-
-  tick() {
-    this.setState({
-      time: formatTime()
-    });
-  }
-
-  componentDidMount() {
-    this.intervalID = setInterval(() => this.tick(), 1000);
-    console.log("https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalID);
   }
 
   switchApp(e) {
@@ -106,7 +89,7 @@ class App extends Component {
         <button className="changeBackground" onClick={this.changeBackground}>
           <i className="fa fa-refresh" aria-hidden="true" />
         </button>
-        <div className="time">{this.state.time}</div>
+        <CurrentTime />
         <AppIconContainer />
         {/* <div className="appButtons">
           <ul>
