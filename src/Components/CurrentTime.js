@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { formatTime } from "../utils/formatTime";
+import "../styles/CurrentTime.css";
 
 class CurrentTime extends Component {
     constructor(props) {
@@ -25,7 +26,9 @@ class CurrentTime extends Component {
     }
 
     render() {
-        return <div ClassName="time">{this.state.time}</div>
+        return(
+            <div className="time">{this.state.time}</div>
+        );
     }
 }
 
