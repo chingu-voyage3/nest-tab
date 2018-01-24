@@ -17,11 +17,7 @@ class App extends Component {
 
     this.state = {
       bgStyle: {
-        backgroundImage: getBackgroundImage(),
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        minHeight: "100vh"
+        backgroundImage: "url('https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height+"')"
       },
       time: formatTime(),
       sidebar: {
@@ -30,17 +26,7 @@ class App extends Component {
       }
     };
 
-    this.changeBackground = this.changeBackground.bind(this);
     this.switchApp = this.switchApp.bind(this);
-  }
-
-  changeBackground() {
-    this.setState({
-      bgStyle: {
-        ...this.state.bgStyle,
-        backgroundImage: getBackgroundImage()
-      }
-    });
   }
 
   tick() {
@@ -51,6 +37,7 @@ class App extends Component {
 
   componentDidMount() {
     this.intervalID = setInterval(() => this.tick(), 1000);
+    console.log("https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height);
   }
 
   componentWillUnmount() {
