@@ -1,13 +1,19 @@
+$size: 200px;
+@mixin circle($size) {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - #{$size/2});
+    top: calc(50% - #{$size/2});
+    width: $size;
+    height: $size;
+  }
+
 .pomodoro {
-    width: 100%;
-    height: 100%;
-    background-color: #FAF8F7;
-    text-align: center;
-    padding-top: 20px;
-    h1, h2, h4, p {
-        color: #555;
-    }
-    h1 {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    h3 {
         margin: 0;
     }
     button {
@@ -15,49 +21,61 @@
         outline: none;
     }
     .taskPicker {
+        display: grid;
+        justify-items: center;
+        align-items: center;
         margin: 20px 0;
-        label {
-            color: #000;
-            font-size: 18px;
-            select {
-                margin-left: 10px;
-            }
+        select {
+            font-size: 14px;
         }
     }
     .timeBox {
-        width: 200px;
-        height: 200px;
-        border: 4px dashed #357AE8;
+        width: $size;
+        height: $size;
         border-radius: 50%;
-        // box-shadow: 1px 2px 15px 5px #a4adce;
-        margin: 30px auto;
+        background-color: #E5E5E5;
         position: relative;
-        .innerTimeBox {
-            position: absolute;
-            top: -4px;
-            bottom: -4px;
-            left: -4px;
-            right: -4px;
-            border: 8px solid #357AE8;
-            border-radius: 50%;
-            padding: 5px;
-            h2 {
-                position: relative;
-                top: 25%;
+        .outer {
+            @include circle($size);
+            clip: rect(0, $size, $size, #{$size/2});
+            .inner {
+                @include circle($size);
+                clip: rect(0, #{$size/2}, $size, 0);
+                background: #81CE97;
+                transform: rotate(0deg);
+                box-shadow: inset 0px 0px 8px 2px #565456
+                transition: transform 0.3s;
             }
+        }
+        &.flip {
+            background-color: #81CE97;
+            .outer {
+                clip: rect(0, #{$size/2}, $size, 0);
+                .inner {
+                    clip: rect(0, $size, $size, #{$size/2});
+                    background: #E5E5E5;
+                }
+            }
+        }
+        .innerTimeBox {
+            @include circle(#{$size/1.15});
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            background-color:cornflowerblue;
         }
     }
     .startButton, .stopButton {
-        color: #fff;
+        // color: #fff;
         padding: 10px 40px;
         border-radius: 25px;
         margin: 5px 10px;
-        box-shadow: 1px 3px 8px 1px #a4a6ab;
+        // box-shadow: 1px 3px 8px 1px #a4a6ab;
         border: none;
         transition: all 0.3s;
         &:hover {
             background-color: darken($color: #357AE8, $amount: 10%);
-            box-shadow: 2px 5px 10px 2px #a4a6ab;
+            // box-shadow: 2px 5px 10px 2px #a4a6ab;
         }
     }
     .startButton {
