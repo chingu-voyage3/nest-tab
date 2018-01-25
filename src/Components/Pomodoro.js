@@ -13,15 +13,15 @@ function StopButton(props) {
 
 function TaskPicker(props) {
     return(
-        <label>
-            Pick a task to work on: 
+        <div className="taskPicker">
+            <p>Pick a task to work on:</p> 
             <select value={props.chosenTask} onChange={props.assignTask}>
                 {props.todoList.map((item) => 
                 !item.isDone ? <option value={item.title} id={item.id}>
                     {item.title}
                 </option> : null)}
             </select>
-        </label>
+        </div>
     );
 }
 
@@ -74,6 +74,10 @@ class CountdownTimer extends Component {
                 isRunning: false
             });
         }
+
+        const progess = 100 - ((((this.state.pomoMinutes * 60) + this.state.pomoSeconds) / 1500) * 100);
+        const progessDegree = Math.trunc(360*progess/100);
+        document.getElementById("progressBar").style.transform = "rotate("+progessDegree+"deg)";
     }
 
     startTimer() {
@@ -96,25 +100,28 @@ class CountdownTimer extends Component {
             pomoMinutes: 25,
             pomoSeconds: 0,
             isRunning: false
-        })
+        }, () => document.getElementById("progressBar").style.transform = "rotate(0deg)")
     }
 
     render() {
 
         return (
-            <div>
-                <h1>Pomodoro Timer</h1>
-                <div className="taskPicker">
+            <div className="pomodoro">
+                <h3>Pomodoro Timer</h3>
+                <div>
                     {this.state.isRunning
-                        ? <p>Working on: {this.state.chosenTask}</p>
+                        ? <p>Working on: {this.state.chosenTask.title}</p>
                         : <TaskPicker todoList={this.state.todoList} assignTask={this.assignTask}
                         chosenTask={this.state.chosenTask}/>
                     }
                 </div>
                 <div className="timeBox">
+                    <div className="outer">
+                        <div className="inner" id="progressBar"></div>
+                    </div>
                     <div className="innerTimeBox">
-                        <h2>{this.state.pomoMinutes}m : {this.state.pomoSeconds < 10 ? "0" : ""}
-                        {this.state.pomoSeconds}s </h2>
+                        <p className="clockTime">{this.state.pomoMinutes}m : {this.state.pomoSeconds < 10 ? "0" : ""}
+                        {this.state.pomoSeconds}s </p>
                     </div>
                 </div>
                 <div className="timeButtons">
@@ -131,7 +138,7 @@ class Pomodoro extends Component {
 
     render() {
         return (
-            <div className="pomodoro">
+            <div>
                 <CountdownTimer />
             </div>
         );
