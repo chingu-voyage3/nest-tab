@@ -6,13 +6,13 @@
         grid-gap: 10px;
         li {
             list-style-type: none;
-            display: grid;
-            justify-items: center;
-            align-items: center;
             padding: 10px;
             border: 1px solid #fff;
-            img {
-                display: inline-block;
+            a {
+                display: grid;
+                justify-items: center;
+                align-items: center;
+                color: #fff;
             }
         }
     }

@@ -8,8 +8,10 @@ function AppButtons(props) {
             <ul>
                 {props.listOfApps.map((item, index) => 
                     <li id={item.app} onClick={props.handleClick(item)} key={index}>
-                        <img src={icon} alt="Click to Open/Close app"/>
-                        <p>{item.title}</p>
+                        <a href="#">
+                            <img src={icon} alt="Click to Open/Close app"/>
+                            {item.title}
+                        </a>
                     </li>
                 )}
             </ul>
