@@ -8,7 +8,7 @@ function StartButton(props) {
 }
 
 function StopButton(props) {
-    return (<button className="stopButton" onClick={props.onClick}>Stop</button>);
+    return (<button className={props.isRunning ? "stopButton" : "stopButton hidden"} onClick={props.onClick}>Stop</button>);
 }
 
 function TaskPicker(props) {
@@ -71,13 +71,19 @@ class CountdownTimer extends Component {
         if (this.state.pomoMinutes == 0 && this.state.pomoSeconds == 0) {
             clearInterval(this.intervalID);
             this.setState({
+                pomoMinutes: 25,
+                pomoSeconds: 0,
                 isRunning: false
-            });
+            }, () => document.getElementById("progressBox").classList.remove("flip"));
         }
 
-        const progess = 100 - ((((this.state.pomoMinutes * 60) + this.state.pomoSeconds) / 1500) * 100);
-        const progessDegree = Math.trunc(360*progess/100);
-        document.getElementById("progressBar").style.transform = "rotate("+progessDegree+"deg)";
+        const progress = 100 - ((((this.state.pomoMinutes * 60) + this.state.pomoSeconds) / 1500) * 100);
+        let progressDegree = Math.trunc(360*progress/100);
+        document.getElementById("progressBar").style.transform = "rotate("+progressDegree+"deg)";
+
+        if (Math.trunc(progress) == 50) {
+            document.getElementById("progressBox").classList.add("flip");            
+        }
     }
 
     startTimer() {
@@ -100,7 +106,9 @@ class CountdownTimer extends Component {
             pomoMinutes: 25,
             pomoSeconds: 0,
             isRunning: false
-        }, () => document.getElementById("progressBar").style.transform = "rotate(0deg)")
+        }, () => {
+            document.getElementById("progressBar").style.transform = "rotate(0deg)";
+            document.getElementById("progressBox").classList.remove("flip");})
     }
 
     render() {
@@ -115,7 +123,7 @@ class CountdownTimer extends Component {
                         chosenTask={this.state.chosenTask}/>
                     }
                 </div>
-                <div className="timeBox">
+                <div className="timeBox" id="progressBox">
                     <div className="outer">
                         <div className="inner" id="progressBar"></div>
                     </div>
@@ -127,7 +135,7 @@ class CountdownTimer extends Component {
                 <div className="timeButtons">
                 <StartButton start={this.startTimer} pause={this.pauseTimer}
                 isRunning={this.state.isRunning}/>
-                <StopButton onClick={this.stopTimer}/>
+                <StopButton onClick={this.stopTimer} isRunning={this.state.isRunning}/>
                 </div>
             </div>
         );
