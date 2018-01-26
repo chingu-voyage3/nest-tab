@@ -1,18 +1,28 @@
 .appButtons {
     grid-area: appButtons;
+    justify-self: center;
+    // align-content: center;
     ul {
         display: grid;
         grid-auto-flow: column;
-        grid-gap: 10px;
+        grid-gap: 15px;
+        padding: 0;
         li {
             list-style-type: none;
             padding: 10px;
-            border: 1px solid #fff;
+            border-radius: 8px;
+            // border: 1px solid #fff;
+            transition: all 0.3s;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
             a {
                 display: grid;
                 justify-items: center;
                 align-items: center;
                 color: #fff;
+                text-decoration: none;
+                line-height: 40px;
             }
         }
     }

@@ -9,4 +9,18 @@ body {
 
 .App {
   min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 90%;
+  grid-template-areas: 
+      "header"
+      "app";
+  justify-items: center;
+  max-height: 100vh;
+}
+
+.changeBackground {
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }

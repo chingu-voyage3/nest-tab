@@ -1,4 +1,8 @@
 div.time {
-    text-align: center;
-    font-size: 3em;
+    display: grid;
+    grid-area: header;
+    p {
+        font-size: 3em;
+        margin: 0;
+    }
 }

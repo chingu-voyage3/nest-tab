@@ -1,17 +1,19 @@
 .appContainer {
-    grid-area: app;
-    width: 400px;
-    min-height: 400px;
-    max-height: 400px;
+    grid-area: appWindow;
+    justify-content: center;
+    width: 450px;
+    min-height: 450px;
+    max-height: 450px;
+    position: absolute;
     background-color: cornflowerblue;
     border-radius: 8px;
     overflow: auto;
     opacity: 0;
-    margin-bottom: 50px;
+    margin-top: -50px;
     transition: all 0.3s;
 }
 
 .appContainer.active {
-    margin-bottom: 0;
+    margin-top: 0;
     opacity: 1;
 }
