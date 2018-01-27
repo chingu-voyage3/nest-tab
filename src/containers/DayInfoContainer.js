@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DayInfo from "../Components/DayInfo";
+import SearchBox from "../Components/SearchBox";
 import "../styles/DayInfoContainer.css";
 const fetchJsonp = require('fetch-jsonp');
 let weather;
@@ -27,7 +28,6 @@ class DayInfoContainer extends Component {
                 fetchJsonp(weatherApiCall).then( response => response.json())
                 .then( data => {
                     weather = data;
-                    console.log(data);
                     this.setState({
                         weatherFetched: true
                     })
@@ -43,7 +43,8 @@ class DayInfoContainer extends Component {
     render() {
         return(
             <div className={this.props.showHide}>
-                <DayInfo weather={this.state.weatherFetched ? weather : ""} />
+                <DayInfo weather={this.state.weatherFetched ? weather : ""} name={JSON.parse(localStorage['name'])}/>
+                <SearchBox />
             </div>
         )
     }
