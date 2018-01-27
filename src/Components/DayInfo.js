@@ -5,7 +5,7 @@ function DayInfo() {
     const day = currentWeekday(new Date());
 
     return(
-        <p>This is an amazing {day}! What will accomplish today? :)</p>
+        <p>This is an amazing <strong>{day}</strong>! What will you accomplish today? :)</p>
     );
 }
 
