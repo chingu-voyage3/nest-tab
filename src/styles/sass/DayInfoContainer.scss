@@ -1,0 +1,12 @@
+.dayInfo {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    opacity: 1;
+    margin-bottom: 0;
+    transition: all 0.3s;
+    &.poof {
+        opacity: 0;
+        margin-bottom: 50px;
+    }
+}
