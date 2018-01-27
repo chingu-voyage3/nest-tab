@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       bgStyle: {
-        backgroundImage: "url('https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height+"')"
+        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url('https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height+"')"
       }
     };
   }
