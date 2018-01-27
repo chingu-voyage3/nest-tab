@@ -1,7 +1,7 @@
 @import "_normalize";
 
 body {
-  background-image: url(" ../assets/wallpapers/background-1.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(" ../assets/wallpapers/background-1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
