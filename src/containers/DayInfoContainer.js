@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DayInfo from "../Components/DayInfo";
 import "../styles/DayInfoContainer.css";
-import DisplayWeather from "../Components/DisplayWeather";
 const fetchJsonp = require('fetch-jsonp');
 let weather;
 
@@ -44,8 +43,7 @@ class DayInfoContainer extends Component {
     render() {
         return(
             <div className={this.props.showHide}>
-                <DayInfo />
-                <DisplayWeather weather={this.state.weatherFetched ? weather : ""} />
+                <DayInfo weather={this.state.weatherFetched ? weather : ""} />
             </div>
         )
     }
