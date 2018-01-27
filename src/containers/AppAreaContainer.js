@@ -6,6 +6,7 @@ import Pomodoro from "../Components/Pomodoro";
 import Shelf from "../Components/Shelf";
 import AppButtons from "../Components/AppButtons";
 import AppViewer from "./AppViewer";
+import DayInfoContainer from "./DayInfoContainer";
 import "../styles/AppArea.css";
 
 
@@ -57,7 +58,8 @@ class AppAreaContainer extends Component {
     render() {
         return(
             <div className="appArea">
-                <AppViewer component={this.state.currentApp} shouldView={this.state.appInView} />
+                <DayInfoContainer showHide={this.state.appInView ? "dayInfo poof" : "dayInfo"} />
+                <AppViewer appComponent={this.state.currentApp} shouldView={this.state.appInView} dayInfo={<DayInfoContainer />} />
                 <AppButtons listOfApps={listOfApps} handleClick={this.handleClick}/>
             </div>
         );
