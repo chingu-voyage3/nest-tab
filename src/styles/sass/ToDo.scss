@@ -1,39 +1,52 @@
 .todo-box {
     display: grid;
-    // grid-template-columns: 1fr;
-    padding: 20px;
+    grid-template-columns: 1fr;
+    // padding: 20px;
+    grid-template-rows: 5% 8% 1fr;
+    grid-template-areas: 
+        "title"
+        "inputBox"
+        "todoItems";
     justify-items: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1rem;
+    .title {
+        grid-area: title;
+        justify-self: stretch;
+        text-align: center;
+        padding: 10px 0;
+        margin: 0 0 20px;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
     form {
-    }
-    input, button {
-        border: none;
-        padding: 10px;
-        font-family: "Product Sans";
-        font-size: 1.2rem;
-        outline: none;
-        border: 0.5px solid #fff;
-    }
-    input {
-        // width: 60%;
-        border-radius: 5px 0 0 5px;
-    }
-    button {
-        border-radius: 0 5px 5px 0;
-        background-color: #508EF5;
-        color: #fff;
+        input, button {
+            border: none;
+            padding: 10px;
+            font-family: "Product Sans";
+            outline: none;
+            border: 1px solid #fff;
+        }
+        input {
+            border-radius: 5px 0 0 5px;
+        }
+        button {
+            border-radius: 0 5px 5px 0;
+            background-color: #508EF5;
+            color: #fff;
+        }
     }
     ul {
+        padding-left: 0;
         .itemContainer {
             li {
                 list-style-type: none;
                 color: #fff;
-                margin: 15px 0;
-                font-size: 0.7em;
+                margin: 10px 0;
+                padding-right: 10px;
+                position: relative;
                 &:hover {
-                    span.remove, span.expandTask {
-                        visibility: visible;
+                    span.expandTask {
+                        opacity: 1;
                     }
                 }
                 span.status {
@@ -45,14 +58,25 @@
                 span.done {
                     color: #fff;
                 }
-                span.remove, span.expandTask {
-                    display: inline-block;
-                    margin-left: 15px;
+                span.expandTask {
+                    position: absolute;
+                    margin-left: 5px;
                     vertical-align: middle;
-                    visibility: hidden;
+                    opacity: 0;
                     color: rgb(245, 225, 226);
+                    transition: all 0.3s;
+                    i {
+                        transition: all 0.3s;
+                        background-color: #fff;
+                        border-radius: 50%;
+                        color: #000;
+                        font-size: 22px;
+                    }
+                    i.selected {
+                        transform: rotate(180deg);
+                    }
                 }
-                span.status, span.remove, span.expandTask {
+                span.status, span.expandTask {
                     &:hover {
                         cursor: pointer;
                     }
@@ -60,16 +84,18 @@
             }
             .taskDetails {
                 display: none;
-                margin-bottom: 50px;
+                margin-bottom: 20px;
                 textarea {
-                    width: 200px;
+                    width: 100%;
+                    padding: 5px;
                     height: 50px;
                     background-color: rgba($color: #000000, $alpha: 0);
                     outline: none;
-                    border: none;
+                    border: 1px solid #ccc;
+                    border-radius: 3px;
                     font-size: 16px;
                     color: #fff;
-                    &:hover {
+                    &:hover, &:active, &:focus {
                         border: 1px solid white;
                     }
                 }
@@ -77,6 +103,21 @@
                     font-size: 14px;
                     margin: 0;
                     color: #eee;
+                }
+                p.remove {
+                    display: inline-block;
+                    border: 1px solid #fa7878;
+                    border-radius: 3px;
+                    padding: 5px 8px;
+                    margin: 10px 0;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    i {
+                        vertical-align: middle;
+                    }
+                    &:hover {
+                        background-color: #ff6a6a;
+                    }
                 }
             }
             .taskDetails.expanded {

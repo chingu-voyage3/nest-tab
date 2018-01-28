@@ -16,6 +16,9 @@ class TaskDetails extends Component {
           ? "You haven't logged any time working on this."
           : workStat}
         </p>
+        <p className="remove" onClick={this.props.removeTask(this.props.todoItem.id)}>
+          <span><i class="material-icons">delete</i></span> Delete this task
+        </p>
       </div>
     );
   }
@@ -33,13 +36,10 @@ class TodoList extends Component {
             </span>
               {item.title}
             <span className="expandTask" onClick={this.props.expandTask(item.id)}>
-              <i onClick={this.props.expandTask} class="material-icons">expand_more</i>
-            </span> 
-            <span className="remove">
-              <i onClick={this.props.removeTask(item.id)} class="material-icons">delete</i>
+              <i class="material-icons">expand_more</i>
             </span>
           </li>
-          <TaskDetails todoItem={item} handleDescription={this.props.handleDescription}/>
+          <TaskDetails todoItem={item} handleDescription={this.props.handleDescription} removeTask={this.props.removeTask}/>
         </div>)}
       </ul>
     );
@@ -116,6 +116,8 @@ class TodoApp extends Component {
   expandTask = param => event => {
     const ele = "taskDetails" + param;
     document.getElementById(ele).classList.toggle("expanded");
+    event.target.classList.toggle("selected");
+    console.log(event.target);
   }
 
   handleDescription = param => event => {
@@ -136,6 +138,7 @@ class TodoApp extends Component {
   render() {
     return(
       <div className="todo-box">
+        <h3 className="title">ToDo</h3>
         <form onSubmit={this.handleSubmit}>
           <input type="text" onChange={this.handleChange} value={this.state.value} />
           <button>Add To-Do</button>
