@@ -16,8 +16,8 @@ function TaskPicker(props) {
         <div className="taskPicker">
             <p>Pick a task to work on:</p> 
             <select value={props.chosenTask} onChange={props.assignTask}>
-                {props.todoList.map((item) => 
-                !item.isDone ? <option value={item.title} id={item.id}>
+                {props.todoList.map((item, index) => 
+                !item.isDone ? <option value={item.title} id={item.id} key={index}>
                     {item.title}
                 </option> : null)}
             </select>
@@ -25,16 +25,25 @@ function TaskPicker(props) {
     );
 }
 
+function WorkingOn(props) {
+    return(
+        <p>Working on: {props.task}</p>
+    )
+}
+
 class CountdownTimer extends Component {
     constructor(props) {
         super(props);
+
+        const todos = JSON.parse(localStorage['todos']);
+        const undoneTodos = todos.filter( item => !item.isDone);
 
         this.state = {
             pomoMinutes: 25,
             pomoSeconds: 0,
             isRunning: false,
-            todoList: JSON.parse(localStorage['todos']),
-            chosenTask: JSON.parse(localStorage['todos'])[0]
+            todoList: todos,
+            chosenTask: undoneTodos[0].title
         };
 
         this.tick = this.tick.bind(this);
@@ -80,6 +89,7 @@ class CountdownTimer extends Component {
         const progress = 100 - ((((this.state.pomoMinutes * 60) + this.state.pomoSeconds) / 1500) * 100);
         let progressDegree = Math.trunc(360*progress/100);
         document.getElementById("progressBar").style.transform = "rotate("+progressDegree+"deg)";
+        console.log(document.getElementById("progressBar"));
 
         if (Math.trunc(progress) == 50) {
             document.getElementById("progressBox").classList.add("flip");            
@@ -89,8 +99,7 @@ class CountdownTimer extends Component {
     startTimer() {
         this.setState({
             isRunning: true
-        });
-        this.intervalID = setInterval(() => this.tick(), 1000);
+        }, () => this.intervalID = setInterval(() => this.tick(), 1000));
     }
 
     pauseTimer() {
@@ -108,17 +117,18 @@ class CountdownTimer extends Component {
             isRunning: false
         }, () => {
             document.getElementById("progressBar").style.transform = "rotate(0deg)";
-            document.getElementById("progressBox").classList.remove("flip");})
+            document.getElementById("progressBox").classList.remove("flip");
+        })
     }
 
     render() {
 
         return (
             <div className="pomodoro">
-                <h3>Pomodoro Timer</h3>
+                <h3 className="title">Pomodoro Timer</h3>
                 <div>
                     {this.state.isRunning
-                        ? <p>Working on: {this.state.chosenTask.title}</p>
+                        ? <WorkingOn task={this.state.chosenTask} />
                         : <TaskPicker todoList={this.state.todoList} assignTask={this.assignTask}
                         chosenTask={this.state.chosenTask}/>
                     }
