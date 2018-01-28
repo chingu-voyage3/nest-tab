@@ -8,6 +8,13 @@ import AppButtons from "../Components/AppButtons";
 import AppViewer from "./AppViewer";
 import DayInfoContainer from "./DayInfoContainer";
 import SetUserName from "../Components/SetUserName";
+
+//import app icons
+import todoIcon from "../assets/icons/todo.png";
+import pomodoroIcon from "../assets/icons/pomodoro.png";
+import shelfIcon from "../assets/icons/shelf.png";
+import bookmarkIcon from "../assets/icons/bookmark.png";
+
 import "../styles/AppArea.css";
 
 
@@ -15,21 +22,25 @@ const listOfApps = [
     {
         app: "todo",
         title: "ToDo",
+        icon: todoIcon,
         component: <TodoApp/>
     },
     {
         app: "pomodoro",
         title: "Pomodoro",
+        icon: pomodoroIcon,
         component: <Pomodoro/>
     },
     {
         app: "shelf",
         title: "Shelf",
+        icon: shelfIcon,
         component: <Shelf/>
     },
     {
         app: "bookmark",
         title: "Bookmark",
+        icon: bookmarkIcon,
         component: <Bookmark/>
     }
 ];
