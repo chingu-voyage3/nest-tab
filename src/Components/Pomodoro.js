@@ -126,13 +126,11 @@ class CountdownTimer extends Component {
         return (
             <div className="pomodoro">
                 <h3 className="title">Pomodoro Timer</h3>
-                <div>
-                    {this.state.isRunning
-                        ? <WorkingOn task={this.state.chosenTask} />
-                        : <TaskPicker todoList={this.state.todoList} assignTask={this.assignTask}
-                        chosenTask={this.state.chosenTask}/>
-                    }
-                </div>
+                {this.state.isRunning
+                    ? <WorkingOn task={this.state.chosenTask} />
+                    : <TaskPicker todoList={this.state.todoList} assignTask={this.assignTask}
+                    chosenTask={this.state.chosenTask}/>
+                }
                 <div className="timeBox" id="progressBox">
                     <div className="outer">
                         <div className="inner" id="progressBar"></div>
@@ -142,7 +140,7 @@ class CountdownTimer extends Component {
                         {this.state.pomoSeconds}s </p>
                     </div>
                 </div>
-                <div className="timeButtons">
+                <div className={this.state.isRunning ? "timeButtons running" : "timeButtons"}>
                 <StartButton start={this.startTimer} pause={this.pauseTimer}
                 isRunning={this.state.isRunning}/>
                 <StopButton onClick={this.stopTimer} isRunning={this.state.isRunning}/>
