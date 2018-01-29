@@ -1,24 +1,38 @@
 .shelf {
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px 0;
-    position: relative;
+    // width: 90%;
+    // margin: 0 auto;
+    // padding: 20px 0;
+    // position: relative;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    grid-gap: 5px;
+    justify-items: center;
+    align-items: center;
+    font-size: 1rem;
+    .title {
+        justify-self: stretch;
+        margin: 0;
+        text-align: center;
+        padding: 10px 0;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
     .shelfInput {
-        input, button {
-            font-size: 18px;
-            padding: 5px;
-        }
-        input {
-            width: 70%;
-            border: none;
-            outline: none;
-            background-color: #fff;
-        }
-        button {
-            width: 25%;
-            margin-left: 2%;
-            background-color: #fff;
-            color: blue;
+        form {
+            input, button {
+                border: none;
+                padding: 10px;
+                font-family: "Product Sans";
+                outline: none;
+                border: 1px solid #fff;
+            }
+            input {
+                border-radius: 5px 0 0 5px;
+            }
+            button {
+                border-radius: 0 5px 5px 0;
+                background-color: #508EF5;
+                color: #fff;
+            }
         }
     }
     .shelfSwitcher {
@@ -26,29 +40,35 @@
         text-align: center;
         .switches {
             display: inline-block;
-            background-color: #d3e1ff;
-            border-radius: 20px;
+            // background-color: #d3e1ff;
+            border: 1px solid #fff;
+            border-radius: 3px;
             a {
                 display: inline-block;
                 padding: 5px 15px;
                 font-size: 16px;
                 text-decoration: none;
+                color: #000;
             }
             a.active {
-                background-color: #1e79e0;
-                border-radius: 20px;
-                color: #fff;
+                background-color: #fff;
+                // border-radius: 20px;
+                color: #000;
             }
         }
     }   
     .shelfList {
         ul {
             padding-left: 0;
+            margin: 0;
+            display: grid;
+            place-items: center center;
             li {
+                width: 80%;
                 position: relative;
                 list-style-type: none;
                 background-color: #fff;
-                margin: 20px 0;
+                margin: 10px 0;
                 padding: 5px 20px 5px 10px;
                 border-radius: 5px;
                 transition: all 0.3s;
@@ -79,7 +99,7 @@
                     transition: all 0.3s;
                 }
                 &:hover {
-                    box-shadow: 2px 2px 8px 3px #e6e6e6;
+                    box-shadow: 0 0 8px 2px #e6e6e6;
                     i {
                         visibility: visible;
                         right: 5px;

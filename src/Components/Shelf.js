@@ -153,6 +153,7 @@ class Shelf extends Component {
     render() {
         return(
             <div className="shelf">
+                <h3 className="title">Shelf</h3>
                 <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit} />
                 <ShelfSwitch filterList={this.filterList}/>
