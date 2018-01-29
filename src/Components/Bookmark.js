@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import React from 'react';
+import "../styles/Bookmark.css";
 
-class Bookmark extends Component {
-  render() {
-    return <h1>Bookmark</h1>;
-  }
+function Bookmark(props) {
+  return(
+    <div className="bookmark">
+      <h3 className="title">Bookmark</h3>
+    </div>
+  )
 }
 
 export default Bookmark;
