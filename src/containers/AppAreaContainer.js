@@ -23,24 +23,28 @@ const listOfApps = [
         app: "todo",
         title: "ToDo",
         icon: todoIcon,
+        color: "#673AB7",
         component: <TodoApp/>
     },
     {
         app: "pomodoro",
         title: "Pomodoro",
         icon: pomodoroIcon,
+        color: "#9C27B0",
         component: <Pomodoro/>
     },
     {
         app: "shelf",
         title: "Shelf",
         icon: shelfIcon,
+        color: "#009688",
         component: <Shelf/>
     },
     {
         app: "bookmark",
         title: "Bookmark",
         icon: bookmarkIcon,
+        color: "#607D8B",
         component: <Bookmark/>
     }
 ];
@@ -63,8 +67,8 @@ class AppAreaContainer extends Component {
 
     handleClick = param => event => {
         this.setState({
-            appInView: this.state.currentApp === param.component ? !this.state.appInView : true,
-            currentApp: param.component
+            appInView: this.state.currentApp === param ? !this.state.appInView : true,
+            currentApp: param
         })
     }
 
@@ -89,7 +93,7 @@ class AppAreaContainer extends Component {
         else return(
             <div className="appArea">
                 <DayInfoContainer showHide={this.state.appInView ? "dayInfo poof" : "dayInfo"} />
-                <AppViewer appComponent={this.state.currentApp} shouldView={this.state.appInView} dayInfo={<DayInfoContainer />} />
+                <AppViewer app={this.state.currentApp} shouldView={this.state.appInView} dayInfo={<DayInfoContainer />} />
                 <AppButtons listOfApps={listOfApps} handleClick={this.handleClick}/>
             </div>
         );
