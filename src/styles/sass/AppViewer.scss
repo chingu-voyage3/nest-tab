@@ -5,13 +5,13 @@
     min-height: 420px;
     max-height: 420px;
     position: absolute;
-    background-color: cornflowerblue;
     border-radius: 8px;
     overflow: auto;
     margin-top: -50px;
     opacity: 0;
     z-index: -1;
     transition: all 0.3s;
+    // background-color comes from the app list object in AppAreaContainer;    
 }
 
 .appContainer.active {

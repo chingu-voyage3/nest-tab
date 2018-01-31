@@ -91,12 +91,15 @@
                     height: 50px;
                     background-color: rgba($color: #000000, $alpha: 0);
                     outline: none;
-                    border: 1px solid #ccc;
+                    border: 1px solid rgba(204, 204, 204, 0.3);
                     border-radius: 3px;
-                    font-size: 16px;
+                    font-size: 14px !important;
                     color: #fff;
                     &:hover, &:active, &:focus {
                         border: 1px solid white;
+                    }
+                    &::placeholder {
+                        color: #ccc;
                     }
                 }
                 p {
