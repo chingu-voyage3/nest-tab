@@ -24,6 +24,7 @@
             .folder-wrap {
                 display: inline-block;
                 pointer-events: none;
+                user-select: none;
                 padding: 5px 15px 5px 5px;   
                 margin: 0 5px;
                 border-radius: 25px;
@@ -48,16 +49,18 @@
             }
             ul {
                 padding-left: 20px;
-                margin: 10px 0;
+                margin: 10px 10px;
                 li {
                     list-style-type: none;
                     a {
                         display: inline-block;                       
-                        text-decoration: none;               
+                        text-decoration: none;   
+                        user-select: none;            
                         color: rgb(30, 58, 83);
                         padding: 8px;
                         border: 2px solid rgba(0, 0, 0, 0);
-                        border-radius: 25px;
+                        border-radius: 5px;
+                        transition: all 0.3s;
                         &:hover {
                             background-color: #fff;
                             border: 2px solid rgb(47, 149, 233);
