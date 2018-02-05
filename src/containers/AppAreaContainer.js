@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Bookmark from "../Components/Bookmark";
+import BookmarkContainer from "../Components/Bookmark";
 import TodoApp from "../Components/To-Do";
 import Pomodoro from "../Components/Pomodoro";
 import Shelf from "../Components/Shelf";
@@ -44,8 +44,8 @@ const listOfApps = [
         app: "bookmark",
         title: "Bookmark",
         icon: bookmarkIcon,
-        color: "#607D8B",
-        component: <Bookmark/>
+        color: "#f2f2f2",
+        component: <BookmarkContainer/>
     }
 ];
 
