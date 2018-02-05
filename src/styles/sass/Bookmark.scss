@@ -1,15 +1,84 @@
 .bookmark {
     display: grid;
-    // grid-template-rows: auto auto auto 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     grid-gap: 5px;
     justify-items: center;
     align-items: center;
+    font-family: "Product Sans";
     font-size: 1rem;
+    box-sizing: border-box;
     .title {
         justify-self: stretch;
         margin: 0;
         text-align: center;
         padding: 10px 0;
         background-color: rgba(0, 0, 0, 0.3);
+    }
+    .bookmarkList {
+        justify-self: stretch;   
+        overflow: hidden;
+        min-width: 0;
+        .folder {
+            color: #fff;
+            .folder-wrap {
+                display: inline-block;
+                pointer-events: none;
+                padding: 5px 15px 5px 5px;   
+                margin: 0 5px;
+                border-radius: 25px;
+                transition: background-color 0.3s;
+                .handler {
+                    font-weight: bold;
+                    vertical-align: middle;
+                }
+                i {
+                    vertical-align: middle;
+                    &:first-child {
+                        transform: rotate(90deg);
+                        transition: transform 0.3s;
+                    }
+                    &:nth-child(2) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+            & > .folder-wrap {
+                background-color: rgb(47, 149, 233);
+            }
+            ul {
+                padding-left: 20px;
+                margin: 10px 0;
+                li {
+                    list-style-type: none;
+                    a {
+                        display: inline-block;                       
+                        text-decoration: none;               
+                        color: rgb(30, 58, 83);
+                        padding: 8px;
+                        border: 2px solid rgba(0, 0, 0, 0);
+                        border-radius: 25px;
+                        &:hover {
+                            background-color: #fff;
+                            border: 2px solid rgb(47, 149, 233);
+                        }
+                    }
+                }
+            }
+        }
+        .closed {
+            color: #000;
+            & > .folder-wrap {
+                background-color: rgba(0, 0, 0, 0);
+                i {
+                    &:first-child {
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+            ul {
+                display: none;
+            }
+        }
     }
 }
