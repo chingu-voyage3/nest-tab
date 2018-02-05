@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 const urlMetadata = require('url-metadata');
 
 function ShelfInput(props) {
@@ -152,13 +153,15 @@ class Shelf extends Component {
 
     render() {
         return(
-            <div className="shelf">
-                <h3 className="title">Shelf</h3>
-                <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit} />
-                <ShelfSwitch filterList={this.filterList}/>
-                <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked} filter={this.state.filter}/>
-            </div>
+            <Scrollbars style={{width: 450, height: 420}}>
+                <div className="shelf">
+                    <h3 className="title">Shelf</h3>
+                    <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit} />
+                    <ShelfSwitch filterList={this.filterList}/>
+                    <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked} filter={this.state.filter}/>
+                </div>
+            </Scrollbars>
         );
     }
 }

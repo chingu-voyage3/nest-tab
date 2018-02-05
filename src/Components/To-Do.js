@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class TaskDetails extends Component {
   render() {
@@ -137,16 +138,18 @@ class TodoApp extends Component {
 
   render() {
     return(
-      <div className="todo-box">
-        <h3 className="title">ToDo</h3>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.handleChange} value={this.state.value} />
-          <button>Add To-Do</button>
-        </form>
-        <TodoList todoList={this.state.todoList} markDone={this.markDone}
-        removeTask={this.removeTask} expandTask={this.expandTask}
-        handleDescription={this.handleDescription}/>
-      </div>
+      <Scrollbars style={{width: 450, height: 420}}> 
+        <div className="todo-box">     
+          <h3 className="title">ToDo</h3>
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" onChange={this.handleChange} value={this.state.value} />
+            <button>Add To-Do</button>
+          </form>
+          <TodoList todoList={this.state.todoList} markDone={this.markDone}
+          removeTask={this.removeTask} expandTask={this.expandTask}
+          handleDescription={this.handleDescription}/>
+        </div>
+      </Scrollbars>
     );
   }
 }
