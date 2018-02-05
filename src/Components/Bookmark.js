@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
 import "../styles/Bookmark.css";
-// import {bookmarkLists} from "./bookObj";
+import {bookmarkLists} from "./bookObj";
 import { Scrollbars } from 'react-custom-scrollbars';
 // const bookmarkLists = [];
 
 class BookmarkContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      bookmarkFetched: false,
-      bookmarks: null
-    }
+    // this.state = {
+    //   bookmarkFetched: false,
+    //   bookmarks: null
+    // }
 
-    this.fetchBookmark = this.fetchBookmark.bind(this);
+    // this.fetchBookmark = this.fetchBookmark.bind(this);
   }
 
-  fetchBookmark() {
-  /*eslint-disable no-undef*/
-    chrome.bookmarks.getTree(result => {
-      // handleBookmarktree(result[0].children)
-      console.log("pushing items into state...");
-      // bookmarkLists.push(result);
-      this.setState({
-        bookmarkFetched: true,
-        bookmarks: result
-      })
-    });
-  }
-  /*eslint-enable no-undef*/
+  // fetchBookmark() {
+  // /*eslint-disable no-undef*/
+  //   chrome.bookmarks.getTree(result => {
+  //     // handleBookmarktree(result[0].children)
+  //     console.log("pushing items into state...");
+  //     // bookmarkLists.push(result);
+  //     this.setState({
+  //       bookmarkFetched: true,
+  //       bookmarks: result
+  //     })
+  //   });
+  // }
+  // /*eslint-enable no-undef*/
 
-  componentDidMount() {
-    this.fetchBookmark();
-  }
+  // componentDidMount() {
+  //   this.fetchBookmark();
+  // }
 
   folderHandler(event) {
     event.target.classList.toggle("closed");
@@ -41,8 +41,8 @@ class BookmarkContainer extends Component {
     return(
       <div>
         <Scrollbars style={{width: 450, height: 420}}>
-          <Bookmark isFetched={this.state.bookmarkFetched} bookmarks={this.state.bookmarks} folderHandler={this.folderHandler}/>
-          {/* <Bookmark folderHandler={this.folderHandler}/> */}
+          {/* <Bookmark isFetched={this.state.bookmarkFetched} bookmarks={this.state.bookmarks} folderHandler={this.folderHandler}/> */}
+          <Bookmark folderHandler={this.folderHandler}/>
         </Scrollbars>
       </div>
     )
@@ -55,8 +55,8 @@ function Bookmark(props) {
       <h3 className="title">Bookmark</h3>
       <div className="bookmarkList">
         {/* {console.log("In compo ",props.bookmarks)} */}
-        {props.isFetched ? mapTree(props.bookmarks[0].children, props.folderHandler) : <h3>Fetching bookmarks...</h3>}
-        {/* {mapTree(bookmarkLists[0].children, props.folderHandler)} */}
+        {/* {props.isFetched ? mapTree(props.bookmarks[0].children, props.folderHandler) : <h3>Fetching bookmarks...</h3>} */}
+        {mapTree(bookmarkLists[0].children, props.folderHandler)}
       </div>
     </div>
   )
