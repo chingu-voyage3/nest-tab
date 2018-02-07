@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import BookmarkContainer from "../Components/Bookmark";
+import BookmarkContainer from "./BookmarkContainer";
 import TodoApp from "../Components/To-Do";
 import Pomodoro from "../Components/Pomodoro";
 import Shelf from "../Components/Shelf";
