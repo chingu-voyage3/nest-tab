@@ -11,9 +11,11 @@ $size: 180px;
 
 .pomodoro {
     display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: auto minmax(100px, auto) 40% 1fr;
     justify-items: center;
     align-items: center;
+    font-family: "Product Sans";
     font-size: 1rem;
     .title {
         justify-self: stretch;
@@ -22,20 +24,30 @@ $size: 180px;
         padding: 10px 0;
         background-color: rgba(0, 0, 0, 0.3);
     }
+    .working {
+        font-size: 20px;
+        font-weight: bold;
+    }
     .taskPicker {
         margin: 10px 0 15px;
-        align-items: start;
+        display: grid;
+        grid-template-columns: 300px;
+        justify-items: center;
         p {
             text-align: center;
             margin-bottom: 5px;
         }
         select {
+            max-width: 80%;
             font-size: 14px;
             background-color: rgba(0, 0, 0, 0);
             padding: 5px;
             outline: none;
             border: 1px solid #fff;
             border-radius: 3px;
+            option {
+                max-width: 300px !important;
+            }
         }
     }
     .timeBox {
