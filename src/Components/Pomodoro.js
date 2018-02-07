@@ -12,22 +12,25 @@ function StopButton(props) {
 }
 
 function TaskPicker(props) {
+    const undoneTodos = props.todoList.filter( item => !item.isDone);
     return(
         <div className="taskPicker">
             <p>Pick a task to work on:</p> 
+            {undoneTodos.length ? 
             <select value={props.chosenTask} onChange={props.assignTask}>
-                {props.todoList.map((item, index) => 
-                !item.isDone ? <option value={item.title} id={item.id} key={index}>
+                {undoneTodos.map((item, index) => 
+                <option value={item.title} id={item.id} key={index}>
                     {item.title}
-                </option> : null)}
+                </option>)}
             </select>
+            : <p>No undone tasks, Woo hoo! Create some new ones!</p>}
         </div>
     );
 }
 
 function WorkingOn(props) {
     return(
-        <p>Working on: {props.task}</p>
+        <p>Working on: <span className="working">{props.task}</span></p>
     )
 }
 
@@ -43,7 +46,7 @@ class CountdownTimer extends Component {
             pomoSeconds: 0,
             isRunning: false,
             todoList: todos,
-            chosenTask: undoneTodos[0].title
+            chosenTask: undoneTodos[0] ? undoneTodos[0].title : "No items!"
         };
 
         this.tick = this.tick.bind(this);
