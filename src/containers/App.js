@@ -17,6 +17,7 @@ class App extends Component {
     };
 
     this.fetchImage = this.fetchImage.bind(this);
+    this.changeBg = this.changeBg.bind(this);
   }
 
   fetchImage() {
@@ -29,6 +30,12 @@ class App extends Component {
           fetchedImage: URL.createObjectURL(blob)
         }, () => console.log(this.state.fetchedImage))
       })
+  }
+
+  changeBg(event) {
+    this.fetchImage();
+    console.log(event.target);
+    event.target.classList.toggle("roll");
   }
 
   componentDidMount() {
@@ -44,8 +51,8 @@ class App extends Component {
     }
     return (
       <div className="App" style={background}>
-        <button className="changeBackground" onClick={this.fetchImage}>
-          <i className="fa fa-refresh" aria-hidden="true" />
+        <button className="changeBackground" title="Change background image">
+          <i className="material-icons" onClick={this.changeBg}>camera</i>
         </button>
         <CurrentTime />
         <AppAreaContainer />
