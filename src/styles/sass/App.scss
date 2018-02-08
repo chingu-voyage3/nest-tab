@@ -1,13 +1,11 @@
 @import "_normalize";
 
-body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(" ../assets/wallpapers/background-1.jpg");
+.App {
+  // background-image: "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), linear-gradient(45deg,#DA1FF2,#4C15D0)";
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.App {
+  transition: background-image 1s ease-in-out; 
   min-height: 100vh;
   max-height: 100vh;
   display: grid;
