@@ -86,7 +86,7 @@ class Shelf extends Component {
         const item = {
             id: this.state.shelfList.length + 1,
             checked: false,
-            url: this.state.inputUrl,
+            url: this.state.inputUrl.startsWith("http") ? this.state.inputUrl : "http://"+this.state.inputUrl,
             title: null,
             description: null,
             icon: null,
