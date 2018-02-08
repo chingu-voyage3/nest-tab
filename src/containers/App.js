@@ -46,8 +46,8 @@ class App extends Component {
     const background = {
       backgroundImage: 
           this.state.fetchedImage ? 
-          "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url('"+this.state.fetchedImage+"')"
-          :  "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url('"+defaultBackground+"')"
+          "url('"+this.state.fetchedImage+"')"
+          :  "url('"+defaultBackground+"')"
     }
     return (
       <div className="App" style={background}>
