@@ -7,7 +7,7 @@ function SetUserName(props) {
             <h1>Hi there! What should I call you? :)</h1>
             <form onSubmit={props.submit}>
                 <input type="text" value={props.name} onChange={props.change} />
-                <button type="submit"><i class="material-icons">arrow_forward</i></button>
+                <button type="submit"><i className="material-icons">arrow_forward</i></button>
             </form>
         </div>
     )
