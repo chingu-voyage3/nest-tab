@@ -15,6 +15,12 @@ class CurrentTime extends Component {
         this.setState({
             time: formatTime()
         });
+
+        const seconds = new Date().getSeconds();
+        const minute = new Date().getMinutes();
+        if (minute === 0 && seconds === 0) {
+            this.props.changeBg()
+        }
     }
 
     componentDidMount() {
