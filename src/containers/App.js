@@ -2,11 +2,14 @@ import React, { Component } from "react";
 
 import CurrentTime from "../Components/CurrentTime";
 import AppAreaContainer from "./AppAreaContainer";
+import image2base64 from "../utils/imageToBase64";
 import "../styles/App.css";
 import "../styles/ToDo.css";
 import "../styles/Pomodoro.css";
 import "../styles/Shelf.css";
 import defaultBackground from "../assets/wallpapers/background-1.jpg";
+
+let defaultImageUrl = "";
 
 class App extends Component {
   constructor() {
@@ -17,6 +20,7 @@ class App extends Component {
     };
 
     this.fetchImage = this.fetchImage.bind(this);
+    this.manageLocalImage = this.manageLocalImage.bind(this);
     this.changeBg = this.changeBg.bind(this);
   }
 
@@ -28,33 +32,50 @@ class App extends Component {
       .then(blob => {
         this.setState({
           fetchedImage: URL.createObjectURL(blob)
-        }, () => console.log(this.state.fetchedImage))
+        }, () => (
+          image2base64(imageUrl)
+            .then(response => localStorage.setItem("bgImage", response))
+            .catch(error => console.log(error))
+        ))
       })
+  }
+
+  manageLocalImage() {
+    if (localStorage['bgImage']) {    
+      defaultImageUrl = "data:image/png;base64,"+localStorage["bgImage"];
+    } else {
+      image2base64("https://source.unsplash.com/random/1366x768")
+          .then(response => {
+            localStorage.setItem("bgImage", response);
+            defaultImageUrl = "data:image/png;base64,"+localStorage["bgImage"];
+            this.setState({
+              fetchedImage: defaultImageUrl
+            })
+          })
+    }
   }
 
   changeBg(event) {
     this.fetchImage();
-    console.log(event.target);
     event.target.classList.toggle("roll");
   }
 
-  componentDidMount() {
-    this.fetchImage();
+  componentWillMount() {
+    this.manageLocalImage();
   }
 
   render() {
     const background = {
       backgroundImage: 
           this.state.fetchedImage ? 
-          "url('"+this.state.fetchedImage+"')"
-          :  "url('"+defaultBackground+"')"
+          "url('"+this.state.fetchedImage+"')" : "url('"+defaultImageUrl+"')"
     }
     return (
       <div className="App" style={background}>
         <button className="changeBackground" title="Change background image">
           <i className="material-icons" onClick={this.changeBg}>camera</i>
         </button>
-        <CurrentTime />
+        <CurrentTime changeBg={this.fetchImage}/>
         <AppAreaContainer />
       </div>
     );
