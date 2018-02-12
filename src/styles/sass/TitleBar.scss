@@ -14,13 +14,23 @@
     p {
         position: absolute;
         cursor: pointer;
+        user-select: none;
         &.input-button {
             left: 10px;
             top: -5px;
+            i.active {
+                transform: rotate(135deg);
+            }
         }
         &.filter-button {
             right: 10px;
             top: -5px;
+            i.active {
+                transform: rotate(180deg);
+            }
+        }
+        i {
+            transition: transform 0.3s ease-in;
         }
     }
 }
