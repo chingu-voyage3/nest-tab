@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
+import TitleBar from './TitleBar';
+import FilterSwitches from './FilterSwitches';
 const urlMetadata = require('url-metadata');
 
 function ShelfInput(props) {
@@ -10,18 +12,6 @@ function ShelfInput(props) {
                 value={props.value} placeholder="Paste url here" />
                 <button type="submit">Add</button>
             </form>
-        </div>
-    );
-}
-
-function ShelfSwitch(props) {
-    return(
-        <div className="shelfSwitcher">
-            <div className="switches">
-                <a href="#" name="undone" onClick={props.filterList} className="active">Pending</a>
-                <a href="#" name="done" onClick={props.filterList}>Done</a>
-                <a href="#" name="all" onClick={props.filterList}>All</a>
-            </div>
         </div>
     );
 }
@@ -64,7 +54,9 @@ class Shelf extends Component {
         this.state = {
             inputUrl: "",
             shelfList: JSON.parse(localStorage['shelfList']),
-            filter: "undone"
+            filter: "undone",
+            showInput: false,
+            showFilter: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -72,6 +64,8 @@ class Shelf extends Component {
         this.markChecked = this.markChecked.bind(this);
         this.updateMeta = this.updateMeta.bind(this);
         this.filterList = this.filterList.bind(this);
+        this.toggleFilter = this.toggleFilter.bind(this);
+        this.toggleInput = this.toggleInput.bind(this);
     }
 
     handleChange(event) {
@@ -146,6 +140,18 @@ class Shelf extends Component {
         }, () => console.log(this.state.filter))
     }
 
+    toggleInput() {
+        this.setState({
+            toggleInput: !this.state.toggleInput
+        })
+    }
+
+    toggleFilter() {
+        this.setState({
+            showFilter: !this.state.showFilter
+        })
+    }
+
     componentDidUpdate() {
         localStorage.setItem("shelfList", JSON.stringify(this.state.shelfList));
         // localStorage.removeItem("shelfList");
@@ -155,10 +161,10 @@ class Shelf extends Component {
         return(
             <Scrollbars style={{width: 450, height: 400}}>
                 <div className="shelf">
-                    <h3 className="title">Shelf</h3>
-                    <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit} />
-                    <ShelfSwitch filterList={this.filterList}/>
+                    <TitleBar title="Shelf" toggleInput={this.toggleInput} toggleFilter ={this.toggleFilter}/>
+                    {this.state.toggleInput && <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit} />}
+                    {this.state.showFilter && <FilterSwitches filterList={this.filterList}/>}
                     <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked} filter={this.state.filter}/>
                 </div>
             </Scrollbars>
