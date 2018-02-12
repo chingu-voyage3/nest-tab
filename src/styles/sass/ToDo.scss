@@ -10,14 +10,23 @@
     justify-items: center;
     align-items: center;
     font-size: 1rem;
-    .title {
-        grid-area: title;
-        justify-self: stretch;
-        text-align: center;
-        font-weight: bold;
-        padding: 10px 0;
-        margin: 0 0 20px;
-        background-color: rgba(0, 0, 0, 0.3);
+    .fade-enter {
+        opacity: 0.01;
+        margin-left: 50px;
+    }
+    .fade-enter.fade-enter-active {
+        opacity: 1;
+        margin-left: 0;
+        transition: all 300ms ease-in;
+    }
+    .fade-exit {
+        opacity: 1;
+        margin-left: 0;
+    }
+    .fade-exit.fade-exit-active {
+        opacity: 0.01;
+        margin-left: 50px;
+        transition: all 250ms ease-in;
     }
     form {
         input, button {
