@@ -7,11 +7,12 @@
     grid-template-rows: auto auto auto 1fr;
     grid-gap: 5px;
     justify-items: center;
-    align-items: center;
+    // align-items: center;
     font-size: 1rem;
     .title {
         justify-self: stretch;
         margin: 0;
+        font-weight: bold;
         text-align: center;
         padding: 10px 0;
         background-color: rgba(0, 0, 0, 0.3);
@@ -21,7 +22,7 @@
             input, button {
                 border: none;
                 padding: 10px;
-                font-family: "Product Sans";
+                font-family: "Source Sans Pro";              
                 outline: none;
                 border: 1px solid #fff;
             }
@@ -58,17 +59,18 @@
         }
     }   
     .shelfList {
+        justify-self: stretch;        
         ul {
             padding-left: 0;
             margin: 0;
             display: grid;
-            place-items: center center;
+            // place-items: center center;
             li {
                 width: 80%;
                 position: relative;
                 list-style-type: none;
                 background-color: #fff;
-                margin: 10px 0;
+                margin: 10px auto;
                 padding: 5px 20px 5px 10px;
                 border-radius: 5px;
                 transition: all 0.3s;

@@ -15,11 +15,11 @@ $size: 180px;
     grid-template-rows: auto minmax(100px, auto) 40% 1fr;
     justify-items: center;
     align-items: center;
-    font-family: "Product Sans";
     font-size: 1rem;
     .title {
         justify-self: stretch;
         margin: 0;
+        font-weight: bold;
         text-align: center;
         padding: 10px 0;
         background-color: rgba(0, 0, 0, 0.3);
@@ -35,6 +35,7 @@ $size: 180px;
         justify-items: center;
         p {
             text-align: center;
+            margin-top: 0;
             margin-bottom: 5px;
         }
         select {

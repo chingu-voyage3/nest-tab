@@ -1,12 +1,15 @@
 .appButtons {
-    grid-area: appButtons;
+    display: grid;
+    grid-area: buttons;
     justify-self: center;
-    // align-content: center;
+    align-content: center;
+    // padding: 10px 0 0;
     ul {
         display: grid;
         grid-auto-flow: column;
         grid-gap: 15px;
         padding: 0;
+        margin: 0;
         li {
             list-style-type: none;
             padding: 10px;

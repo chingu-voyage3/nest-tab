@@ -1,10 +1,11 @@
 .appContainer {
     grid-area: appWindow;
     justify-content: center;
-    width: 450px;
-    min-height: 420px;
-    max-height: 420px;
-    position: absolute;
+    min-width: 450px;
+    max-width: 450px;
+    min-height: 400px;
+    max-height: 400px;
+    // position: relative;
     border-radius: 8px;
     overflow: auto;
     margin-top: -50px;

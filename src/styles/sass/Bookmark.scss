@@ -5,12 +5,12 @@
     grid-gap: 5px;
     justify-items: center;
     align-items: center;
-    font-family: "Product Sans";
     font-size: 1rem;
     box-sizing: border-box;
     .title {
         justify-self: stretch;
         margin: 0;
+        font-weight: bold;
         text-align: center;
         padding: 10px 0;
         background-color: rgba(0, 0, 0, 0.3);
