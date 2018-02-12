@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
+import TitleBar from './TitleBar';
+import FilterSwitches from './FilterSwitches';
 
 class TaskDetails extends Component {
   render() {
@@ -25,26 +27,41 @@ class TaskDetails extends Component {
   }
 }
 
-class TodoList extends Component {
-  render() {
-    return(
-      <ul>
-        {this.props.todoList.map((item) => 
-        <div className="itemContainer">
-          <li key={item.id} id={item.id}>
-            <span onClick={this.props.markDone(item.id)} className={"status " + (item.isDone ? "done" : "")}>
-              <i onClick={this.props.markDone(item.id)} className="material-icons">check_circle</i>
-            </span>
-              {item.title}
-            <span className="expandTask" onClick={this.props.expandTask(item.id)}>
-              <i class="material-icons">expand_more</i>
-            </span>
-          </li>
-          <TaskDetails todoItem={item} handleDescription={this.props.handleDescription} removeTask={this.props.removeTask}/>
-        </div>)}
-      </ul>
-    );
+function InputForm(props) {
+  return(
+    <form onSubmit={props.handleSubmit}>
+      <input type="text" onChange={props.handleChange} value={props.stateValue} />
+      <button>Add To-Do</button>
+    </form>
+  )
+}
+
+function TodoList(props) {
+  let list = props.todoList;
+
+  if (props.filter == "undone") {
+    list = list.filter(item => !item.isDone)
+  } else if (props.filter == "done") {
+    list = list.filter(item => item.isDone)
   }
+
+  return(
+    <ul>
+      {list.map((item) => 
+      <div className="itemContainer">
+        <li key={item.id} id={item.id}>
+          <span onClick={props.markDone(item.id)} className={"status " + (item.isDone ? "done" : "")}>
+            <i onClick={props.markDone(item.id)} className="material-icons">check_circle</i>
+          </span>
+            {item.title}
+          <span className="expandTask" onClick={props.expandTask(item.id)}>
+            <i class="material-icons">expand_more</i>
+          </span>
+        </li>
+        <TaskDetails todoItem={item} handleDescription={props.handleDescription} removeTask={props.removeTask}/>
+      </div>)}
+    </ul>
+  );
 }
 
 class TodoApp extends Component {
@@ -56,7 +73,10 @@ class TodoApp extends Component {
 
     this.state = {
       value: '',
-      todoList: JSON.parse(localStorage['todos'])
+      todoList: JSON.parse(localStorage['todos']),
+      filter: "undone",
+      toggleInput: false,
+      toggleFilter: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -64,6 +84,10 @@ class TodoApp extends Component {
     this.removeTask = this.removeTask.bind(this);
     this.markDone = this.markDone.bind(this);
     this.expandTask = this.expandTask.bind(this);
+    this.filterList = this.filterList.bind(this);
+    this.toggleInput = this.toggleInput.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
+    
   }
 
   handleChange(event) {
@@ -132,6 +156,30 @@ class TodoApp extends Component {
     });
   }
 
+  filterList(event) {
+    event.preventDefault();
+
+    //Adding/removing class for highlighting
+    document.querySelector("a.active").classList.remove("active");
+    event.target.classList.add("active");
+
+    this.setState({
+        filter: event.target.name
+    }, () => console.log(this.state.filter))
+  }
+
+  toggleInput() {
+    this.setState({
+      toggleInput: !this.state.toggleInput
+    })
+  }
+
+  toggleFilter() {
+    this.setState({
+      toggleFilter: !this.state.toggleFilter
+    })
+  }
+
   componentDidUpdate() {
     localStorage.setItem('todos', JSON.stringify(this.state.todoList));
   }
@@ -140,12 +188,10 @@ class TodoApp extends Component {
     return(
       <Scrollbars style={{width: 450, height: 400}}> 
         <div className="todo-box">     
-          <h3 className="title">ToDo</h3>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" onChange={this.handleChange} value={this.state.value} />
-            <button>Add To-Do</button>
-          </form>
-          <TodoList todoList={this.state.todoList} markDone={this.markDone}
+          <TitleBar title="ToDo List" toggleInput={this.toggleInput} toggleFilter={this.toggleFilter}/>
+          {this.state.toggleInput && <InputForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} stateValue={this.state.value}/>}
+          {this.state.toggleFilter && <FilterSwitches filterList={this.filterList}/>}
+          <TodoList todoList={this.state.todoList} filter={this.state.filter} markDone={this.markDone}
           removeTask={this.removeTask} expandTask={this.expandTask}
           handleDescription={this.handleDescription}/>
         </div>
