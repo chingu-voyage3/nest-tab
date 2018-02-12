@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Scrollbars } from 'react-custom-scrollbars';
 import TitleBar from './TitleBar';
 import FilterSwitches from './FilterSwitches';
@@ -20,7 +21,7 @@ class TaskDetails extends Component {
           : workStat}
         </p>
         <p className="remove" onClick={this.props.removeTask(this.props.todoItem.id)}>
-          <span><i class="material-icons">delete</i></span> Delete this task
+          <span><i className="material-icons">delete</i></span> Delete this task
         </p>
       </div>
     );
@@ -29,10 +30,10 @@ class TaskDetails extends Component {
 
 function InputForm(props) {
   return(
-    <form onSubmit={props.handleSubmit}>
-      <input type="text" onChange={props.handleChange} value={props.stateValue} />
-      <button>Add To-Do</button>
-    </form>
+      <form onSubmit={props.handleSubmit}>
+        <input type="text" onChange={props.handleChange} value={props.stateValue} />
+        <button>Add To-Do</button>
+      </form>
   )
 }
 
@@ -47,19 +48,23 @@ function TodoList(props) {
 
   return(
     <ul>
-      {list.map((item) => 
-      <div className="itemContainer">
-        <li key={item.id} id={item.id}>
-          <span onClick={props.markDone(item.id)} className={"status " + (item.isDone ? "done" : "")}>
-            <i onClick={props.markDone(item.id)} className="material-icons">check_circle</i>
-          </span>
-            {item.title}
-          <span className="expandTask" onClick={props.expandTask(item.id)}>
-            <i class="material-icons">expand_more</i>
-          </span>
-        </li>
-        <TaskDetails todoItem={item} handleDescription={props.handleDescription} removeTask={props.removeTask}/>
-      </div>)}
+      <TransitionGroup>
+        {list.map((item, index) => 
+        <CSSTransition key={item.id} timeout={300} classNames="fade">
+          <div className="itemContainer">
+            <li key={item.id} id={item.id}>
+              <span onClick={props.markDone(item.id)} className={"status " + (item.isDone ? "done" : "")}>
+                <i onClick={props.markDone(item.id)} className="material-icons">check_circle</i>
+              </span>
+                {item.title}
+              <span className="expandTask" onClick={props.expandTask(item.id)}>
+                <i className="material-icons">expand_more</i>
+              </span>
+            </li>
+            <TaskDetails todoItem={item} handleDescription={props.handleDescription} removeTask={props.removeTask}/>
+          </div>
+        </CSSTransition>)}
+      </TransitionGroup>
     </ul>
   );
 }
@@ -168,13 +173,15 @@ class TodoApp extends Component {
     }, () => console.log(this.state.filter))
   }
 
-  toggleInput() {
+  toggleInput(event) {
+    event.target.classList.toggle("active");
     this.setState({
       toggleInput: !this.state.toggleInput
     })
   }
 
-  toggleFilter() {
+  toggleFilter(event) {
+    event.target.classList.toggle("active");
     this.setState({
       toggleFilter: !this.state.toggleFilter
     })

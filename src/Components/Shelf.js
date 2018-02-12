@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Scrollbars } from 'react-custom-scrollbars';
 import TitleBar from './TitleBar';
 import FilterSwitches from './FilterSwitches';
@@ -28,16 +29,20 @@ function ShelfList(props) {
     return(
         <div className="shelfList">
             <ul>
-                {list.map((item, index) =>
-                    <li key={index}>
-                        {item.title && <a href={item.url} target="_blank">{item.title}</a>}
-                        <a href={item.url} target="_blank" className="url">
-                        {item.url}
-                        </a>
-                        <i onClick={props.markChecked(item.id)} className={item.checked ? "material-icons done" : "material-icons"}>check_circle</i>
-                        {item.description && <p>{item.description}</p>}
-                    </li>
-                )}
+                <TransitionGroup>
+                    {list.map((item, index) =>
+                        <CSSTransition key={item.id} timeout={300} classNames="swipe">
+                            <li key={item.id}>
+                                {item.title && <a href={item.url} target="_blank">{item.title}</a>}
+                                <a href={item.url} target="_blank" className="url">
+                                {item.url}
+                                </a>
+                                <i onClick={props.markChecked(item.id)} className={item.checked ? "material-icons done" : "material-icons"}>check_circle</i>
+                                {item.description && <p>{item.description}</p>}
+                            </li>
+                        </CSSTransition>
+                    )}
+                </TransitionGroup>
             </ul>
         </div>
     );
@@ -140,13 +145,15 @@ class Shelf extends Component {
         }, () => console.log(this.state.filter))
     }
 
-    toggleInput() {
+    toggleInput(event) {
+        event.target.classList.toggle("active");
         this.setState({
             toggleInput: !this.state.toggleInput
         })
     }
 
-    toggleFilter() {
+    toggleFilter(event) {
+        event.target.classList.toggle("active");
         this.setState({
             showFilter: !this.state.showFilter
         })
