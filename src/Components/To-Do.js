@@ -138,7 +138,7 @@ class TodoApp extends Component {
 
   render() {
     return(
-      <Scrollbars style={{width: 450, height: 420}}> 
+      <Scrollbars style={{width: 450, height: 400}}> 
         <div className="todo-box">     
           <h3 className="title">ToDo</h3>
           <form onSubmit={this.handleSubmit}>

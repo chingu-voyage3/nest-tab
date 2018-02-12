@@ -45,7 +45,7 @@ class BookmarkContainer extends Component {
   render() {
     return(
       <div>
-        <Scrollbars style={{width: 450, height: 420}}>
+        <Scrollbars style={{width: 450, height: 400}}>
           <BookmarkList isFetched={this.state.bookmarkFetched} bookmarks={this.state.bookmarks} folderHandler={this.folderHandler}/>
           {/* <BookmarkList folderHandler={this.folderHandler}/> */}
         </Scrollbars>

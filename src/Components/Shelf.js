@@ -153,7 +153,7 @@ class Shelf extends Component {
 
     render() {
         return(
-            <Scrollbars style={{width: 450, height: 420}}>
+            <Scrollbars style={{width: 450, height: 400}}>
                 <div className="shelf">
                     <h3 className="title">Shelf</h3>
                     <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
