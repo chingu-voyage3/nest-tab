@@ -93,7 +93,7 @@ class AppAreaContainer extends Component {
         else return(
             <div className="appArea">
                 <DayInfoContainer showHide={this.state.appInView ? "dayInfo poof" : "dayInfo"} />
-                <AppViewer app={this.state.currentApp} shouldView={this.state.appInView} dayInfo={<DayInfoContainer />} />
+                <AppViewer app={this.state.currentApp} shouldView={this.state.appInView} />
                 <AppButtons listOfApps={listOfApps} handleClick={this.handleClick}/>
             </div>
         );
