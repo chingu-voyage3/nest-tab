@@ -35,9 +35,13 @@ body {
   left: 5px;
   outline: none;
   i {
-    transition: transform 1s ease-in-out;
+    opacity: 0.5;
+    transition: all 1s ease-in-out;
     &.roll {
       transform: rotate(360deg);            
+    }
+    &:hover {
+      opacity: 1;
     }
   }
 }
