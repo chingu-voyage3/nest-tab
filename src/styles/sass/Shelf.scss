@@ -9,14 +9,6 @@
     justify-items: center;
     // align-items: center;
     font-size: 1rem;
-    .title {
-        justify-self: stretch;
-        margin: 0;
-        font-weight: bold;
-        text-align: center;
-        padding: 10px 0;
-        background-color: rgba(0, 0, 0, 0.3);
-    }
     .shelfInput {
         form {
             input, button {
@@ -33,28 +25,6 @@
                 border-radius: 0 5px 5px 0;
                 background-color: #508EF5;
                 color: #fff;
-            }
-        }
-    }
-    .shelfSwitcher {
-        margin: 10px auto;
-        text-align: center;
-        .switches {
-            display: inline-block;
-            // background-color: #d3e1ff;
-            border: 1px solid #fff;
-            border-radius: 3px;
-            a {
-                display: inline-block;
-                padding: 5px 15px;
-                font-size: 16px;
-                text-decoration: none;
-                color: #000;
-            }
-            a.active {
-                background-color: #fff;
-                // border-radius: 20px;
-                color: #000;
             }
         }
     }   
