@@ -125,8 +125,6 @@ class TodoApp extends Component {
       this.setState({
         todoList: this.state.todoList.concat(currentItem),
         value: ''
-      }, () => {
-        console.log(this.state.todoList);
       });
     }    
   }
@@ -141,7 +139,7 @@ class TodoApp extends Component {
 
     this.setState({
       todoList: newList
-    }, () => console.log(this.state.todoList));
+    });
   }
 
   removeTask = param => event => {
@@ -157,7 +155,6 @@ class TodoApp extends Component {
     const ele = "taskDetails" + param;
     document.getElementById(ele).classList.toggle("expanded");
     event.target.classList.toggle("selected");
-    console.log(event.target);
   }
 
   handleDescription = param => event => {
@@ -180,7 +177,7 @@ class TodoApp extends Component {
 
     this.setState({
         filter: event.target.name
-    }, () => console.log(this.state.filter))
+    })
   }
 
   toggleInput(event) {
