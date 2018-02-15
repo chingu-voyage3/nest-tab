@@ -30,10 +30,20 @@ class TaskDetails extends Component {
 
 function InputForm(props) {
   return(
-      <form onSubmit={props.handleSubmit}>
-        <input type="text" onChange={props.handleChange} value={props.stateValue} />
-        <button>Add To-Do</button>
-      </form>
+      <Fade view={props.view}>
+        <form onSubmit={props.handleSubmit}>
+          <input type="text" onChange={props.handleChange} value={props.stateValue} />
+          <button>Add To-Do</button>
+        </form>
+      </Fade>
+  )
+}
+
+function Fade(props) {
+  return(
+    <CSSTransition in={props.view} timeout={1000} classNames="fade">
+      {props.children}
+    </CSSTransition>
   )
 }
 
@@ -195,12 +205,15 @@ class TodoApp extends Component {
     return(
       <Scrollbars style={{width: 450, height: 400}}> 
         <div className="todo-box">     
+        {/* <CSSTransitionGroup transitionName="watch-tower" transitionEnterTimeout={1000} */}
+        {/* // transitionLeaveTimeout={1000}> */}
           <TitleBar title="ToDo List" toggleInput={this.toggleInput} toggleFilter={this.toggleFilter}/>
-          {this.state.toggleInput && <InputForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} stateValue={this.state.value}/>}
+          {this.state.toggleInput && <InputForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} stateValue={this.state.value} view={this.state.toggleInput}/>}
           {this.state.toggleFilter && <FilterSwitches filterList={this.filterList}/>}
           <TodoList todoList={this.state.todoList} filter={this.state.filter} markDone={this.markDone}
           removeTask={this.removeTask} expandTask={this.expandTask}
           handleDescription={this.handleDescription}/>
+          {/* </CSSTransitionGroup> */}
         </div>
       </Scrollbars>
     );
