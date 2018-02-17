@@ -5,7 +5,10 @@ function BookmarkList(props) {
     <div className="bookmark">
       <h3 className="title">Bookmark</h3>
       <div className="bookmarkList">
-        {props.isFetched ? mapTree(props.bookmarks[0].children, props.folderHandler) : <h3>This is a Chrome specific feature that only runs inside Chrome. Please install the extension to use this feature. :)</h3>}
+        {props.isFetched ? mapTree(props.bookmarks[0].children, props.folderHandler) 
+          : <h3>{ props.bookmarks === false ?
+            "This is a Chrome specific feature that only runs inside Chrome. Please install the extension to use this feature. :)"
+            : "Fetching Bookmark..."}</h3>}
         {/* {mapTree(bookmarkLists[0].children, props.folderHandler)} */}
       </div>
     </div>
