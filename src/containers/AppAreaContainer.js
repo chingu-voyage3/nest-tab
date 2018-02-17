@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import BookmarkContainer from "./BookmarkContainer";
 import TodoAppContainer from "./TodoAppContainer";
-import Pomodoro from "../Components/Pomodoro";
+import PomodoroContainer from "./PomodoroContainer";
 import Shelf from "../Components/Shelf";
 import AppButtons from "../Components/AppButtons";
 import AppViewer from "./AppViewer";
@@ -31,7 +31,7 @@ const listOfApps = [
         title: "Pomodoro",
         icon: pomodoroIcon,
         color: "#9C27B0",
-        component: <Pomodoro/>
+        component: <PomodoroContainer/>
     },
     {
         app: "shelf",
