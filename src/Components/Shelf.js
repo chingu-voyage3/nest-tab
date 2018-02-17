@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export function ShelfInput(props) {
@@ -16,9 +16,9 @@ export function ShelfInput(props) {
 export function ShelfList(props) {
     let list = props.shelfList;
 
-    if (props.filter == "undone") {
+    if (props.filter === "undone") {
         list = list.filter(item => !item.checked);
-    } else if(props.filter == "done") {
+    } else if(props.filter === "done") {
         list = list.filter(item => item.checked);
     }
 

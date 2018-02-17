@@ -33,7 +33,7 @@ class PomodoroContainer extends Component {
     }
 
     tick() {
-        if (this.state.pomoSeconds != 0) {
+        if (this.state.pomoSeconds !== 0) {
             this.setState({
                 pomoSeconds: this.state.pomoSeconds - 1
             });
@@ -42,7 +42,7 @@ class PomodoroContainer extends Component {
                 pomoMinutes: this.state.pomoMinutes - 1,
                 pomoSeconds: 59,
                 todoList: (this.state.todoList.map(item => (
-                    item.title == this.state.chosenTask 
+                    item.title === this.state.chosenTask 
                     ? Object.assign({}, item, {workTime: item.workTime+1}) : item
                 )))
             }, () => {
@@ -50,7 +50,7 @@ class PomodoroContainer extends Component {
             })
         }
 
-        if (this.state.pomoMinutes == 0 && this.state.pomoSeconds == 0) {
+        if (this.state.pomoMinutes === 0 && this.state.pomoSeconds === 0) {
             clearInterval(this.intervalID);
             this.setState({
                 pomoMinutes: 25,
@@ -64,7 +64,7 @@ class PomodoroContainer extends Component {
         document.getElementById("progressBar").style.transform = "rotate("+progressDegree+"deg)";
         console.log(document.getElementById("progressBar"));
 
-        if (Math.trunc(progress) == 50) {
+        if (Math.trunc(progress) === 50) {
             document.getElementById("progressBox").classList.add("flip");            
         }
     }

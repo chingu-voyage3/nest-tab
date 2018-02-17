@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 //Start Button Component
 export function StartButton(props) {

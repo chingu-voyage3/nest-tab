@@ -4,7 +4,6 @@ import TitleBar from '../Components/TitleBar';
 import FilterSwitches from '../Components/FilterSwitches';
 import { InputForm } from '../Components/To-Do';
 import { TodoList } from '../Components/To-Do';
-import { TaskDetails } from '../Components/To-Do';
 
 class TodoAppContainer extends Component {
     constructor(props) {
@@ -48,7 +47,7 @@ class TodoAppContainer extends Component {
         workTime: 0
       };
   
-      if(this.state.value != '') {
+      if(this.state.value !== '') {
         this.setState({
           todoList: this.state.todoList.concat(currentItem),
           value: ''
@@ -58,7 +57,7 @@ class TodoAppContainer extends Component {
   
     markDone = param => event => {
       const newList = this.state.todoList.map( item => {
-        if (item.id == param) {
+        if (item.id === param) {
           return Object.assign({}, item, {isDone: !item.isDone});
         }
         return item;
@@ -73,7 +72,7 @@ class TodoAppContainer extends Component {
       const { todoList } = this.state;
       this.setState({
         todoList: todoList.filter(
-          item => item.id != param
+          item => item.id !== param
         )
       });
     }
@@ -89,7 +88,7 @@ class TodoAppContainer extends Component {
       this.setState({
         todoList: todoList.map(
           item => (
-            item.id == param ? Object.assign({}, item, {description: event.target.value})
+            item.id === param ? Object.assign({}, item, {description: event.target.value})
           : item ) 
         )
       });

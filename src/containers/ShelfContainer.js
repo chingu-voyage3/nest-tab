@@ -46,8 +46,7 @@ class ShelfContainer extends Component {
             url: this.state.inputUrl.startsWith("http") ? this.state.inputUrl : "http://"+this.state.inputUrl,
             title: null,
             description: null,
-            icon: null,
-            checked: false
+            icon: null
         }
 
         urlMetadata("https://cors-anywhere.herokuapp.com/"+this.state.inputUrl).then(
@@ -64,7 +63,7 @@ class ShelfContainer extends Component {
             }
         );
 
-        if (this.state.inputUrl != "") {
+        if (this.state.inputUrl !== "") {
             this.setState({
                 shelfList: this.state.shelfList.concat(item),
                 inputUrl: ""
@@ -75,7 +74,7 @@ class ShelfContainer extends Component {
     updateMeta(meta) {
         this.setState({
             shelfList: this.state.shelfList.map(
-                item => item.id == meta.id ? meta : item
+                item => item.id === meta.id ? meta : item
             )
         })
     }
@@ -85,7 +84,7 @@ class ShelfContainer extends Component {
 
         this.setState({
             shelfList: shelfList.map(
-                item => item.id == param
+                item => item.id === param
                 ? Object.assign({}, item, {checked: !item.checked}) : item
             )
         });

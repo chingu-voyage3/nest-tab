@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export function TaskDetails(props) {
     const hour = Math.trunc(props.todoItem.workTime/60);
     const minute = props.todoItem.workTime%60;
-    const workStat = hour == 0 ? "Worked "+minute+" minutes on this task."
+    const workStat = hour === 0 ? "Worked "+minute+" minutes on this task."
           : "Worked "+hour+" hour and "+minute+" minutes on this task."
 
     return(
@@ -36,9 +36,9 @@ export function InputForm(props) {
 export function TodoList(props) {
   let list = props.todoList;
 
-  if (props.filter == "undone") {
+  if (props.filter === "undone") {
     list = list.filter(item => !item.isDone)
-  } else if (props.filter == "done") {
+  } else if (props.filter === "done") {
     list = list.filter(item => item.isDone)
   }
 
