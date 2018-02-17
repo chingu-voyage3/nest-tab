@@ -34,7 +34,7 @@ function ShelfList(props) {
                         <CSSTransition key={item.id} timeout={300} classNames="swipe">
                             <li key={item.id}>
                                 {item.title && <a href={item.url} target="_blank">{item.title}</a>}
-                                <a href={item.url} target="_blank" className="url">
+                                <a href={item.url} target="_blank" className={item.title ? "url" : "url-unsolved"}>
                                 {item.url}
                                 </a>
                                 <i onClick={props.markChecked(item.id)} className={item.checked ? "material-icons done" : "material-icons"}>check_circle</i>
