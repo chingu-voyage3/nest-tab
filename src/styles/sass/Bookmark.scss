@@ -19,6 +19,10 @@
         justify-self: stretch;   
         overflow: hidden;
         min-width: 0;
+        h3 {
+            color: #000;
+            text-align: center;
+        }
         .folder {
             color: #fff;
             .folder-wrap {
