@@ -16,14 +16,20 @@ class BookmarkContainer extends Component {
     this.fetchBookmark = this.fetchBookmark.bind(this);
   }
 
-  fetchBookmark() {
   /*eslint-disable no-undef*/
-    chrome.bookmarks.getTree(result => {
+  fetchBookmark() {
+    if (chrome.bookmarks === undefined) {
       this.setState({
-        bookmarkFetched: true,
-        bookmarks: result
-      }, () => this.foldersToTop())
-    });
+        bookmarks: false
+      })
+    } else {
+      chrome.bookmarks.getTree(result => {
+        this.setState({
+          bookmarkFetched: true,
+          bookmarks: result
+        }, () => this.foldersToTop())
+      });
+    }
   }
   /*eslint-enable no-undef*/
 
