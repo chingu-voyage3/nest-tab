@@ -4,28 +4,27 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import TitleBar from './TitleBar';
 import FilterSwitches from './FilterSwitches';
 
-class TaskDetails extends Component {
-  render() {
-    const hour = Math.trunc(this.props.todoItem.workTime/60);
-    const minute = this.props.todoItem.workTime%60;
+function TaskDetails(props) {
+    const hour = Math.trunc(props.todoItem.workTime/60);
+    const minute = props.todoItem.workTime%60;
     const workStat = hour == 0 ? "Worked "+minute+" minutes on this task."
           : "Worked "+hour+" hour and "+minute+" minutes on this task."
+
     return(
-      <div className="taskDetails" id={"taskDetails" + this.props.todoItem.id}>
-        <textarea onChange={this.props.handleDescription(this.props.todoItem.id)} placeholder="Write some details..."
-        value={this.props.todoItem.description}>
+      <div className="taskDetails" id={"taskDetails" + props.todoItem.id}>
+        <textarea onChange={props.handleDescription(props.todoItem.id)} placeholder="Write some details..."
+        value={props.todoItem.description}>
         </textarea>
         <p>
-          {!this.props.todoItem.workTime 
+          {!props.todoItem.workTime 
           ? "You haven't logged any time working on this."
           : workStat}
         </p>
-        <p className="remove" onClick={this.props.removeTask(this.props.todoItem.id)}>
+        <p className="remove" onClick={props.removeTask(props.todoItem.id)}>
           <span><i className="material-icons">delete</i></span> Delete this task
         </p>
       </div>
     );
-  }
 }
 
 function InputForm(props) {
@@ -201,16 +200,13 @@ class TodoApp extends Component {
   render() {
     return(
       <Scrollbars style={{width: 450, height: 400}}> 
-        <div className="todo-box">     
-        {/* <CSSTransitionGroup transitionName="watch-tower" transitionEnterTimeout={1000} */}
-        {/* // transitionLeaveTimeout={1000}> */}
+        <div className="todo-box">
           <TitleBar title="ToDo List" toggleInput={this.toggleInput} toggleFilter={this.toggleFilter}/>
           {this.state.toggleInput && <InputForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} stateValue={this.state.value} view={this.state.toggleInput}/>}
           {this.state.toggleFilter && <FilterSwitches filterList={this.filterList}/>}
           <TodoList todoList={this.state.todoList} filter={this.state.filter} markDone={this.markDone}
           removeTask={this.removeTask} expandTask={this.expandTask}
           handleDescription={this.handleDescription}/>
-          {/* </CSSTransitionGroup> */}
         </div>
       </Scrollbars>
     );
