@@ -7,7 +7,6 @@ import "../styles/App.css";
 import "../styles/ToDo.css";
 import "../styles/Pomodoro.css";
 import "../styles/Shelf.css";
-import defaultBackground from "../assets/wallpapers/background-1.jpg";
 
 let defaultImageUrl = "";
 
