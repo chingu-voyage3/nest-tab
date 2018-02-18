@@ -62,7 +62,6 @@ class PomodoroContainer extends Component {
         const progress = 100 - ((((this.state.pomoMinutes * 60) + this.state.pomoSeconds) / 1500) * 100);
         let progressDegree = Math.trunc(360*progress/100);
         document.getElementById("progressBar").style.transform = "rotate("+progressDegree+"deg)";
-        console.log(document.getElementById("progressBar"));
 
         if (Math.trunc(progress) === 50) {
             document.getElementById("progressBox").classList.add("flip");            

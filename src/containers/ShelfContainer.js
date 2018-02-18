@@ -99,7 +99,7 @@ class ShelfContainer extends Component {
 
         this.setState({
             filter: event.target.name
-        }, () => console.log(this.state.filter))
+        })
     }
 
     toggleInput(event) {
