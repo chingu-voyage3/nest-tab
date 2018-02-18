@@ -14,12 +14,16 @@
         li {
             list-style-type: none;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 5px;
             // border: 1px solid #fff;
             transition: all 0.3s;
             min-width: 100px;
             &:hover {
-                background-color: rgba(0, 0, 0, 0.5);
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            &.activeApp {
+                background-color: rgba(0, 0, 0, 0.5);  
+                box-shadow: 0px 0px 5px 3px #85acc7;             
             }
             a {
                 display: grid;

@@ -69,7 +69,14 @@ class AppAreaContainer extends Component {
         this.setState({
             appInView: this.state.currentApp === param ? !this.state.appInView : true,
             currentApp: param
-        })
+        }, () => {
+            let activeLi = document.querySelector("li.activeApp");
+            if (activeLi) {activeLi.classList.remove("activeApp")};
+            document.getElementById(this.state.currentApp.app).classList.add("activeApp");
+            if (!this.state.appInView && activeLi) {
+                activeLi.classList.remove("activeApp")
+            }
+        });
     }
 
     handleChange(event) {
@@ -94,7 +101,7 @@ class AppAreaContainer extends Component {
             <div className="appArea">
                 <DayInfoContainer showHide={this.state.appInView ? "dayInfo poof" : "dayInfo"} />
                 <AppViewer app={this.state.currentApp} shouldView={this.state.appInView} />
-                <AppButtons listOfApps={listOfApps} handleClick={this.handleClick}/>
+                <AppButtons listOfApps={listOfApps} handleClick={this.handleClick} activeApp={this.state.currentApp}/>
             </div>
         );
     }
