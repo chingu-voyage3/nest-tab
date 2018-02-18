@@ -44,3 +44,16 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .dayInfo {
+        .daySummary {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}

@@ -8,3 +8,11 @@ div.time {
         z-index: 1;
     }
 }
+
+@media (max-width: 767px) {
+    div.time {
+        p {
+            font-size: 1.2em;
+        }
+    }
+}
