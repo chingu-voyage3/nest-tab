@@ -71,7 +71,7 @@ class App extends Component {
     }
     return (
       <div className="App" style={background}>
-        <button className="changeBackground" title="Change background image">
+        <button className="changeBackground" title="Get a new background image">
           <i className="material-icons" onClick={this.changeBg}>camera</i>
         </button>
         <CurrentTime changeBg={this.fetchImage}/>
