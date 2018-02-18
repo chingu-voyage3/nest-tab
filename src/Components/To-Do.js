@@ -9,7 +9,7 @@ export function TaskDetails(props) {
 
     return(
       <div className="taskDetails" id={"taskDetails" + props.todoItem.id}>
-        <textarea onChange={props.handleDescription(props.todoItem.id)} placeholder="Write some details..."
+        <textarea onChange={props.handleDescription(props.todoItem.id)} placeholder="Write some details here...Texts are automatically saved."
         value={props.todoItem.description}>
         </textarea>
         <p>
