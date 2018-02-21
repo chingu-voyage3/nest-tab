@@ -52,6 +52,7 @@ I've used below technology to create Nest Tab:
 + [Unsplash API](https://source.unsplash.com/) for images
 + [DarkSkies API](https://darksky.net/dev) for weather data
 + [Chrome API](https://developer.chrome.com/extensions/api_index)
++ [Google Material Icons](https://material.io/icons/)
 
 
 Development
