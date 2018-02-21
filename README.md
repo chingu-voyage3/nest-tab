@@ -13,7 +13,7 @@ Introduction
 
 **Nest Tab** is a simple Google Chrome extension that replaces your New Tab page with a clean looking page that contains tools to help you be productive. Simplicity and usefulness is the main focus of Nest Tab. It currently features a _Todo_ list and a _Pomodoro_ clock that works together, a _Shelf_ to dump urls that you want to take a look at later, and a _Bookmark_ quick acess tool. More features are to be added soon. This project was built as part of the Chingu Build to Learn program.
 
-Downloads
+Download
 -------------------
 
 The packaged extension file can be found [here]().
@@ -33,7 +33,7 @@ Some of the main features of **Nest Tab**:
 
 More features are in plan to be implemented. If you have any feature idea, please create an issue here.
 
-#### Screenshots
+### Screenshots
 
 ![Image alt text](https://i.imgur.com/FV768MK.png "Todo App")
 ![Image alt text](https://i.imgur.com/0yE4h7q.png "Pomodoro App")
@@ -64,7 +64,7 @@ If you want to contribute or just want to run the project locally, Follow these 
 + The previous command will start the local dev server and will open the project in browser tab automatically. If it doesn't manually open `http://localhost:3000/` (Please note that features which rely on data from Chrome API will show an error since the API can not be used from `localhost`. You need to build the project and run it inside chrome as an extension (see below) to use those feature).
 + You're ready to go! Your change in codes will be reflected in browser automatically.
 
-#### Deployment to Chrome
+### Deployment to Chrome
 If you want to run the project inside chrome as an extension, follow these steps:
 + While in project folder, run `npm run build` to create a build of the project
 + Open Chrome and enter `chrome://extensions` in url box
