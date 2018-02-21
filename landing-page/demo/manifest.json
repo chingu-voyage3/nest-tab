@@ -1,0 +1,23 @@
+{
+  "short_name": "Nest",
+  "name": "Nest - Your new Chrome Home",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Nest"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "bookmarks",
+    "geolocation"
+  ],
+  "content_security_policy": "script-src 'self' https://api.darksky.net/; object-src 'self'",
+  "version": "1.0",
+  "icons": {
+    "16": "nest-16.png",
+    "48": "nest-48.png",
+    "128": "nest-128.png"
+  }
+}
