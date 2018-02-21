@@ -7,7 +7,10 @@ import { WorkingOn } from '../Components/Pomodoro';
 class PomodoroContainer extends Component {
     constructor(props) {
         super(props);
-
+        if (localStorage.getItem('todos') == null) {
+            localStorage.setItem('todos', JSON.stringify([]));
+        }
+        
         const todos = JSON.parse(localStorage['todos']);
         const undoneTodos = todos.filter( item => !item.isDone);
 
