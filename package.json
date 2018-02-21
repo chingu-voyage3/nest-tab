@@ -25,7 +25,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://faahim.github.io/geckos-28/landing-page/demo/",
+  "homepage": "https://faahim.github.io/geckos-28/demo/",
   "devDependencies": {
     "gh-pages": "^1.1.0"
   }
