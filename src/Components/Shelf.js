@@ -1,4 +1,5 @@
 import React from 'react';
+import EmptyNotifier from './EmptyNotifier';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export function ShelfInput(props) {
@@ -18,6 +19,11 @@ export function ShelfList(props) {
 
     if (props.filter === "undone") {
         list = list.filter(item => !item.checked);
+        if (list.length < 1) {
+            return(
+                <EmptyNotifier/>
+            )
+        }
     } else if(props.filter === "done") {
         list = list.filter(item => item.checked);
     }
