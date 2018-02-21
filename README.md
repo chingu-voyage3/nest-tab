@@ -11,7 +11,7 @@
 Introduction
 ------------------------
 
-**Nest Tab** is a simple Google Chrome extension that replaces your New Tab page with a clean looking page that contains tools to help you be productive. Simplicity and usefulness is the main focus of Nest Tab. It currently features a _Todo_ list and a _Pomodoro_ clock that works together, a _Shelf_ to dump urls that you want to take a look at later, and a _Bookmark_ quick acess tool. More features are to be added soon. This project was built as part of the Chingu Build to Learn program.
+**Nest Tab** is a simple Google Chrome extension that replaces your New Tab page with a clean looking page that contains tools to help you be productive. Simplicity and usefulness is the main focus of Nest Tab. It currently features a _Todo_ list and a _Pomodoro_ clock that works together, a _Shelf_ to dump urls that you want to take a look at later, and a _Bookmark_ quick acess tool. More features are to be added soon. This project was built as part of the [Chingu Build to Learn](https://medium.com/chingu/voyage-build-to-learn-handbook-4d4fc9370429) program.
 
 Download
 -------------------
