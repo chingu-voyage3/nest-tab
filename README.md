@@ -1,4 +1,4 @@
-![Image alt text](https://i.imgur.com/my6sQvh.png "Main Screen")
+![Image alt text](https://i.imgur.com/JVWC1el.png "Main Screen")
 
 ## Table of Content
 * [Introduction](https://github.com/faahim/geckos-28#introduction)
@@ -35,10 +35,10 @@ More features are in plan to be implemented. If you have any feature idea, pleas
 
 ### Screenshots
 
-![Image alt text](https://i.imgur.com/FV768MK.png "Todo App")
-![Image alt text](https://i.imgur.com/0yE4h7q.png "Pomodoro App")
-![Image alt text](https://i.imgur.com/NxQ4CNW.png "Shelf App")
-![Image alt text](https://i.imgur.com/5d3uZWt.png "Bookmark App")
+![Image alt text](https://i.imgur.com/Bsk2TcB.png "Todo App")
+![Image alt text](https://i.imgur.com/PeW3CKq.png "Pomodoro App")
+![Image alt text](https://i.imgur.com/Sse0qwU.png "Shelf App")
+![Image alt text](https://i.imgur.com/unXGN4k.png "Bookmark App")
 
 
 Tech Stack
