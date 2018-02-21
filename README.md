@@ -1,12 +1,12 @@
 ![Image alt text](https://i.imgur.com/JVWC1el.png "Main Screen")
 
 ## Table of Content
-* [Introduction](https://github.com/faahim/geckos-28#introduction)
-* [Download](https://github.com/faahim/geckos-28#download)
-* [Features](https://github.com/faahim/geckos-28#features)
-* [Tech Stack](https://github.com/faahim/geckos-28#tech-stack)
-* [Development](https://github.com/faahim/geckos-28#development)
-* [Versions](https://github.com/faahim/geckos-28#versions)
+* [Introduction](https://github.com/faahim/nest-tab#introduction)
+* [Download](https://github.com/faahim/nest-tab#download)
+* [Features](https://github.com/faahim/nest-tab#features)
+* [Tech Stack](https://github.com/faahim/nest-tab#tech-stack)
+* [Development](https://github.com/faahim/nest-tab#development)
+* [Versions](https://github.com/faahim/nest-tab#versions)
 
 Introduction
 ------------------------
