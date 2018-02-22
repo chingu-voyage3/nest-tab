@@ -18,7 +18,7 @@ class BookmarkContainer extends Component {
 
   /*eslint-disable no-undef*/
   fetchBookmark() {
-    if (chrome === undefined) {
+    if (typeof chrome === "undefined" || chrome.bookmarks === undefined) {
       this.setState({
         bookmarks: false
       })
