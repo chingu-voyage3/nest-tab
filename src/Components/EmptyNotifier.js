@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/EmptyNotifier.css';
 
+//Shows a message when a list is empty
 function EmptyNotifier(props) {
     return(
         <div className="empty">

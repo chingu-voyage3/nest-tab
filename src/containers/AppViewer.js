@@ -1,6 +1,7 @@
 import React from 'react';
 import "../styles/AppViewer.css";
 
+//Brings/Removes the chosen app in view
 function AppViewer(props) {
     const backgroundColor = {backgroundColor: props.app.color};
     return(

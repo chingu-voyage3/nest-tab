@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+//import all the app components
 import BookmarkContainer from "./BookmarkContainer";
 import TodoAppContainer from "./TodoAppContainer";
 import PomodoroContainer from "./PomodoroContainer";
@@ -17,7 +18,7 @@ import bookmarkIcon from "../assets/icons/bookmark.png";
 
 import "../styles/AppArea.css";
 
-
+// Object that contain info about all the apps. To add a new app, import necessary components, and add it here following the existing structure.
 const listOfApps = [
     {
         app: "todo",
@@ -49,6 +50,7 @@ const listOfApps = [
     }
 ];
 
+//Area for app window, decides to view/switch/close apps
 class AppAreaContainer extends Component {
     constructor(props) {
         super(props);
@@ -65,6 +67,7 @@ class AppAreaContainer extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    //Makes decisions of which app to view or, when to close current app
     handleClick = param => event => {
         this.setState({
             appInView: this.state.currentApp === param ? !this.state.appInView : true,
@@ -79,12 +82,14 @@ class AppAreaContainer extends Component {
         });
     }
 
+    //Input handler for first time name prompt
     handleChange(event) {
         this.setState({
             name: event.target.value
         })
     }
 
+    //Submit handler for first time name prompt
     handleSubmit(event) {
         event.preventDefault();
         localStorage.setItem('name', JSON.stringify(this.state.name));
@@ -95,6 +100,7 @@ class AppAreaContainer extends Component {
 
     render() {
         if (localStorage.getItem('name') == null) {
+            //Asks for users name if it doesn't exist in localstorage
             return <SetUserName change={this.handleChange} submit={this.handleSubmit} name={this.state.name}/>
         }
         else return(

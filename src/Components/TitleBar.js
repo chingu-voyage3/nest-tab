@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/TitleBar.css'
 
+//Renders a title bar with prop based buttons on every app
 function TitleBar(props) {
     return(
         <div className="title-bar">

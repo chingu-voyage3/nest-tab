@@ -2,6 +2,7 @@ import React from 'react';
 import EmptyNotifier from './EmptyNotifier';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
+//New entry inputbox for shelf
 export function ShelfInput(props) {
     return(
         <div className="shelfInput">
@@ -14,12 +15,14 @@ export function ShelfInput(props) {
     );
 }
 
+//Lists the shelf item
 export function ShelfList(props) {
     let list = props.shelfList;
 
     if (props.filter === "undone") {
         list = list.filter(item => !item.checked);
         if (list.length < 1) {
+            //Shows error message if the undone item list is empty
             return(
                 <EmptyNotifier/>
             )

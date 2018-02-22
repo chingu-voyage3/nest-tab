@@ -2,6 +2,7 @@ import React from 'react';
 import EmptyNotifier from './EmptyNotifier';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
+//Renders the detailed info of a todo item
 export function TaskDetails(props) {
     const hour = Math.trunc(props.todoItem.workTime/60);
     const minute = props.todoItem.workTime%60;
@@ -25,6 +26,7 @@ export function TaskDetails(props) {
     );
 }
 
+//Input box for adding new todo item
 export function InputForm(props) {
   return(
         <form onSubmit={props.handleSubmit}>
@@ -34,12 +36,14 @@ export function InputForm(props) {
   )
 }
 
+//Renders the list of todo items
 export function TodoList(props) {
   let list = props.todoList;
 
   if (props.filter === "undone") {
     list = list.filter(item => !item.isDone)
     if (list.length < 1) {
+      //Returns a message when the undone item list is empty
       return (
         <EmptyNotifier/>
       )

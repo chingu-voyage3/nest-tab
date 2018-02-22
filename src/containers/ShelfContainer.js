@@ -11,6 +11,7 @@ class ShelfContainer extends Component {
         super(props);
 
         if (localStorage.getItem('shelfList') == null) {
+            //Creates local storage entry if it doesn't exists already
             localStorage.setItem('shelfList', JSON.stringify([]));
         }
 
@@ -40,6 +41,7 @@ class ShelfContainer extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
+        //Constructs object for a new item
         const item = {
             id: this.state.shelfList.length + 1,
             checked: false,
@@ -51,6 +53,7 @@ class ShelfContainer extends Component {
 
         urlMetadata("https://cors-anywhere.herokuapp.com/"+this.state.inputUrl).then(
             (metadata) => {
+                //Updates the item object when meta is available
                 const itemWithMeta = Object.assign({}, item, {
                     title: metadata.title,
                     description: metadata.description,
@@ -103,6 +106,7 @@ class ShelfContainer extends Component {
     }
 
     toggleInput(event) {
+        //Shows/hides the input box
         event.target.classList.toggle("active");
         this.setState({
             toggleInput: !this.state.toggleInput
@@ -110,6 +114,7 @@ class ShelfContainer extends Component {
     }
 
     toggleFilter(event) {
+        //Shows/hides the filter buttons
         event.target.classList.toggle("active");
         this.setState({
             showFilter: !this.state.showFilter
@@ -118,7 +123,7 @@ class ShelfContainer extends Component {
 
     componentDidUpdate() {
         localStorage.setItem("shelfList", JSON.stringify(this.state.shelfList));
-        // localStorage.removeItem("shelfList");
+        // localStorage.removeItem("shelfList"); --For clearing all data in dev!!
     }
 
     render() {

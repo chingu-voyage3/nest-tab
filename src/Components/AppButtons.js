@@ -2,6 +2,7 @@ import React from 'react';
 
 import "../styles/AppButtons.css";
 
+//Renders a button for every app based on listOfApp object
 function AppButtons(props) {
     return(
         <div className="appButtons">

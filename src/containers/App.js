@@ -10,6 +10,7 @@ import "../styles/Shelf.css";
 
 let defaultImageUrl = "";
 
+//Main container to containing all the apps
 class App extends Component {
   constructor() {
     super();
@@ -23,6 +24,7 @@ class App extends Component {
     this.changeBg = this.changeBg.bind(this);
   }
 
+  //Fetches a random image to use as background
   fetchImage() {
     const imageUrl = "https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height;
 
@@ -32,6 +34,7 @@ class App extends Component {
         this.setState({
           fetchedImage: URL.createObjectURL(blob)
         }, () => (
+          //Saves fetched image in localstorage to use next time
           image2base64(imageUrl)
             .then(response => localStorage.setItem("bgImage", response))
             .catch(error => console.log(error))
@@ -41,8 +44,10 @@ class App extends Component {
 
   manageLocalImage() {
     if (localStorage['bgImage']) {    
+      //Add data prefix if an image url already exists
       defaultImageUrl = "data:image/png;base64,"+localStorage["bgImage"];
     } else {
+      //Downloads and saves a random image if nothing exists in localstorage, used on first launch only
       image2base64("https://source.unsplash.com/random/1366x768")
           .then(response => {
             localStorage.setItem("bgImage", response);
@@ -54,6 +59,7 @@ class App extends Component {
     }
   }
 
+  //Triggers the fetchImage method to change background
   changeBg(event) {
     this.fetchImage();
     event.target.classList.toggle("roll");

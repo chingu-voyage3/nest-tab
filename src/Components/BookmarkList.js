@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Renders bookmark list tree and shows error on invalid platform
 function BookmarkList(props) {
   return(
     <div className="bookmark">
@@ -9,12 +10,12 @@ function BookmarkList(props) {
           : <h3>{ props.bookmarks === false ?
             "This is a Chrome specific feature that only runs inside Chrome. Please install the extension to use this feature. :)"
             : "Fetching Bookmark..."}</h3>}
-        {/* {mapTree(bookmarkLists[0].children, props.folderHandler)} */}
       </div>
     </div>
   )
 }
 
+//Takes care of iterating over and creating list from chrome bookmark tree object
 const mapTree = (arr, handler) => arr.map((item, index) => {
   if (item.children) {
      return <div className="folder closed" onClick={handler}>

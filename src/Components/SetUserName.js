@@ -1,6 +1,7 @@
 import React from 'react';
 import "../styles/SetUserName.css";
 
+//Asks for users name when the app is run for the very first time
 function SetUserName(props) {
     return(
         <div className="askName">

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/FilterSwitches.css';
 
+//Filters a list props based on done/undone properties
 function FilterSwitches(props) {
     return(
         <div className="shelfSwitcher">

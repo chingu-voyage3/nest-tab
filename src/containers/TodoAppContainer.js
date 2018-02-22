@@ -9,6 +9,7 @@ class TodoAppContainer extends Component {
     constructor(props) {
       super(props);
       if (localStorage.getItem('todos') == null) {
+        //Creates local storage entry if it doesn't exists already
         localStorage.setItem('todos', JSON.stringify([]));
       }
   
@@ -39,6 +40,8 @@ class TodoAppContainer extends Component {
   
     handleSubmit(event) {
       event.preventDefault();
+
+      //Constructs object for a new item
       const currentItem = {
         id: this.state.todoList.length + 1,
         title: this.state.value,
@@ -69,6 +72,7 @@ class TodoAppContainer extends Component {
     }
   
     removeTask = param => event => {
+      //Deletes a specified item
       const { todoList } = this.state;
       this.setState({
         todoList: todoList.filter(
@@ -78,6 +82,7 @@ class TodoAppContainer extends Component {
     }
   
     expandTask = param => event => {
+      //Opens up the details of a todo item
       const ele = "taskDetails" + param;
       document.getElementById(ele).classList.toggle("expanded");
       event.target.classList.toggle("selected");
@@ -107,6 +112,7 @@ class TodoAppContainer extends Component {
     }
   
     toggleInput(event) {
+      //Shows/hides the input box
       event.target.classList.toggle("active");
       this.setState({
         toggleInput: !this.state.toggleInput
@@ -114,6 +120,7 @@ class TodoAppContainer extends Component {
     }
   
     toggleFilter(event) {
+      //Shows/hides the filer buttons
       event.target.classList.toggle("active");
       this.setState({
         toggleFilter: !this.state.toggleFilter

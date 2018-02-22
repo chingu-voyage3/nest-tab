@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { formatTime } from "../utils/formatTime";
 import "../styles/CurrentTime.css";
 
+//Constracts and updates the time
 class CurrentTime extends Component {
     constructor(props) {
         super(props);

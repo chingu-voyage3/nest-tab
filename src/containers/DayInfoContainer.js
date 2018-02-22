@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import DayInfo from "../Components/DayInfo";
 import SearchBox from "../Components/SearchBox";
 import "../styles/DayInfoContainer.css";
-const fetchJsonp = require('fetch-jsonp');
+
+const fetchJsonp = require('fetch-jsonp'); //import jsonp module
+
 let weather;
 
 class DayInfoContainer extends Component {
@@ -16,6 +18,7 @@ class DayInfoContainer extends Component {
         this.fetchWeather = this.fetchWeather.bind(this);
     }
 
+    //Fetch weather data based on current latitude and longitude
     fetchWeather() {
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(location => {
@@ -36,6 +39,7 @@ class DayInfoContainer extends Component {
         }
     }
 
+    //Atemp to pull weather data after the component is mounted
     componentDidMount() {
         this.fetchWeather();
     }

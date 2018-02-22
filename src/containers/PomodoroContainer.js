@@ -4,6 +4,7 @@ import { StopButton } from '../Components/Pomodoro';
 import { TaskPicker } from '../Components/Pomodoro';
 import { WorkingOn } from '../Components/Pomodoro';
 
+//Logics for timer, helps styling the timer clock
 class PomodoroContainer extends Component {
     constructor(props) {
         super(props);
@@ -37,10 +38,12 @@ class PomodoroContainer extends Component {
 
     tick() {
         if (this.state.pomoSeconds !== 0) {
+            //Updates the seconds
             this.setState({
                 pomoSeconds: this.state.pomoSeconds - 1
             });
         } else {
+            //Updates the minutes at the end of 60 sec, increment the time worked on the task
             this.setState({
                 pomoMinutes: this.state.pomoMinutes - 1,
                 pomoSeconds: 59,
@@ -54,6 +57,7 @@ class PomodoroContainer extends Component {
         }
 
         if (this.state.pomoMinutes === 0 && this.state.pomoSeconds === 0) {
+            //Resets timer when time ends
             clearInterval(this.intervalID);
             this.setState({
                 pomoMinutes: 25,
@@ -62,6 +66,7 @@ class PomodoroContainer extends Component {
             }, () => document.getElementById("progressBox").classList.remove("flip"));
         }
 
+        //Calculate and parcentage of timer and generate coresponsing degree to style the clocks progressbar style
         const progress = 100 - ((((this.state.pomoMinutes * 60) + this.state.pomoSeconds) / 1500) * 100);
         let progressDegree = Math.trunc(360*progress/100);
         document.getElementById("progressBar").style.transform = "rotate("+progressDegree+"deg)";
