@@ -45,7 +45,7 @@ const listOfApps = [
         app: "bookmark",
         title: "Bookmark",
         icon: bookmarkIcon,
-        color: "#f2f2f2",
+        color: "#388AA8",
         component: <BookmarkContainer/>
     }
 ];
