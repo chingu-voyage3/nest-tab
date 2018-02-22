@@ -4,6 +4,7 @@ import TitleBar from '../Components/TitleBar';
 import FilterSwitches from '../Components/FilterSwitches';
 import { ShelfInput } from '../Components/Shelf';
 import { ShelfList } from '../Components/Shelf';
+import "../styles/Shelf.css";
 const urlMetadata = require('url-metadata');
 
 class ShelfContainer extends Component {

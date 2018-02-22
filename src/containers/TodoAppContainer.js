@@ -4,6 +4,7 @@ import TitleBar from '../Components/TitleBar';
 import FilterSwitches from '../Components/FilterSwitches';
 import { InputForm } from '../Components/To-Do';
 import { TodoList } from '../Components/To-Do';
+import "../styles/ToDo.css";
 
 class TodoAppContainer extends Component {
     constructor(props) {

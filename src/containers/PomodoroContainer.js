@@ -3,6 +3,7 @@ import { StartButton } from '../Components/Pomodoro';
 import { StopButton } from '../Components/Pomodoro';
 import { TaskPicker } from '../Components/Pomodoro';
 import { WorkingOn } from '../Components/Pomodoro';
+import "../styles/Pomodoro.css";
 
 //Logics for timer, helps styling the timer clock
 class PomodoroContainer extends Component {
