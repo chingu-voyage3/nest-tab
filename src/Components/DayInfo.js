@@ -1,10 +1,15 @@
 import React from 'react';
 import { currentWeekday } from "../utils/currentWeekday";
 
+//Generate and renders text for day information section
 function DayInfo(props) {
     const day = currentWeekday(new Date());
-    const weatherInfo = props.weather ? " It's "+props.weather.currently.summary+" outside with a temprature of " +props.weather.currently.temperature.toFixed(1)+"°C" : "";
+
+    //Structures weather text
+    const weatherInfo = props.weather ? " It's "+props.weather.currently.summary+" outside with a temperature of " +props.weather.currently.temperature.toFixed(1)+"°C" : "";
     const timeOfDay = new Date().getHours();
+
+    //Decide greeting based on time of the day
     let greeting = "Hi";
     switch(true) {
         case (timeOfDay >= 0 && timeOfDay < 12 ):
