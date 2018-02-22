@@ -4,9 +4,6 @@ import CurrentTime from "../Components/CurrentTime";
 import AppAreaContainer from "./AppAreaContainer";
 import image2base64 from "../utils/imageToBase64";
 import "../styles/App.css";
-import "../styles/ToDo.css";
-import "../styles/Pomodoro.css";
-import "../styles/Shelf.css";
 
 let defaultImageUrl = "";
 
