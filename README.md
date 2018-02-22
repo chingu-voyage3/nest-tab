@@ -7,6 +7,7 @@
 * [Tech Stack](https://github.com/faahim/nest-tab#tech-stack)
 * [Development](https://github.com/faahim/nest-tab#development)
 * [Versions](https://github.com/faahim/nest-tab#versions)
++ [Courtesy](https://github.com/faahim/nest-tab#courtesy)
 
 Introduction
 ------------------------
@@ -77,3 +78,8 @@ If you want to run the project inside chrome as an extension, follow these steps
 Versions
 ------------------
 + Version 0.0.1: Initial Release
+
+
+Courtesy
+------------------
+I'd specially like to thank [Eddy Willson](https://github.com/eddyw), [Bartek Lewandowski](https://github.com/Jabarlew) and the entire Chingu Voyage community for their help and support. They were by my side everytime I was on verge of giving up. This project wouldn't come to light without them. So, Thank you! :)
