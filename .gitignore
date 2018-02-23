@@ -9,6 +9,9 @@
 # production
 /build
 
+# chrome package private key
+/package/build.pem
+
 # misc
 .DS_Store
 .env.local
