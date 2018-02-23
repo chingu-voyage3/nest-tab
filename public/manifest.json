@@ -20,7 +20,7 @@
     ]
   },
   "content_security_policy": "script-src 'self' https://api.darksky.net/; object-src 'self'",
-  "version": "1.0",
+  "version": "0.0.1",
   "icons": {
     "16": "nest-16.png",
     "48": "nest-48.png",
