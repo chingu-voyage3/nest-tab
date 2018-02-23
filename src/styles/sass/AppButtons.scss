@@ -1,0 +1,41 @@
+.appButtons {
+    display: grid;
+    grid-area: buttons;
+    justify-self: center;
+    align-content: center;
+    font-family: "Source Sans Pro";
+    // padding: 10px 0 0;
+    ul {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 15px;
+        padding: 0;
+        margin: 0;
+        li {
+            list-style-type: none;
+            padding: 5px;
+            border-radius: 5px;
+            // border: 1px solid #fff;
+            transition: all 0.3s;
+            min-width: 100px;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            &.activeApp {
+                background-color: rgba(0, 0, 0, 0.5);  
+                box-shadow: 0px 0px 2px 1px rgba(133, 172, 199, 0.5);             
+            }
+            a {
+                display: grid;
+                justify-items: center;
+                align-items: center;
+                color: #fff;
+                text-decoration: none;
+                line-height: 40px;
+                img {
+                    width: 80px;
+                }
+            }
+        }
+    }
+}

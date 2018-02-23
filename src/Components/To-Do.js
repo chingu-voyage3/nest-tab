@@ -1,102 +1,78 @@
-import React, { Component } from 'react';
+import React from 'react';
+import EmptyNotifier from './EmptyNotifier';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-class TodoList extends Component {
-  render() {
+//Renders the detailed info of a todo item
+export function TaskDetails(props) {
+    const hour = Math.trunc(props.todoItem.workTime/60);
+    const minute = props.todoItem.workTime%60;
+    const workStat = hour === 0 ? "Worked "+minute+" minutes on this task."
+          : "Worked "+hour+" hour and "+minute+" minutes on this task."
+
     return(
-      <ul>
-        {this.props.todoList.map((item) => 
-        <li key={item.id} id={item.id}>
-          <span className={"status " + (item.isDone ? "done" : "")} onClick={this.props.markDone}>✓</span>
-            {item.title}
-          <span className="remove" onClick={this.props.removeTask}>✕</span>
-        </li>)}
-      </ul>
-    );
-  }
-}
-
-class TodoApp extends Component {
-  constructor(props) {
-    super(props);
-    if (localStorage.getItem('todos') == null) {
-      localStorage.setItem('todos', JSON.stringify([]));
-    }
-
-    this.state = {
-      value: '',
-      todoList: JSON.parse(localStorage['todos'])
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.removeTask = this.removeTask.bind(this);
-    this.markDone = this.markDone.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      value: event.target.value
-    });  
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const currentItem = {
-      id: this.state.todoList.length + 1,
-      title: this.state.value,
-      isDone: false
-    };
-
-    if(this.state.value != '') {
-      this.setState({
-        todoList: this.state.todoList.concat(currentItem),
-        value: ''
-      }, () => {
-        console.log(this.state.todoList);
-      });
-    }    
-  }
-
-  markDone(event) {
-    const newList = this.state.todoList.map( item => {
-      if (item.id == event.target.parentNode.id) {
-        let toggleStatus = item.isDone ? false : true;
-        return Object.assign({}, item, {isDone: toggleStatus});
-      }
-      return item;
-    });
-
-    this.setState({
-      todoList: newList
-    }, () => console.log(this.state.todoList));
-  }
-
-  removeTask(event) {
-    const itemRemoved = (event.target.parentNode.id);
-    const { todoList } = this.state;
-    this.setState({
-      todoList: todoList.filter(
-        item => item.id != itemRemoved
-      )
-    });
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem('todos', JSON.stringify(this.state.todoList));
-  }
-
-  render() {
-    return(
-      <div className="todo-box">
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.handleChange} value={this.state.value} />
-          <button>Add To-Do</button>
-        </form>
-        <TodoList todoList={this.state.todoList} markDone={this.markDone}
-        removeTask={this.removeTask}/>
+      <div className="taskDetails" id={"taskDetails" + props.todoItem.id}>
+        <textarea onChange={props.handleDescription(props.todoItem.id)} placeholder="Write some details here...Texts are automatically saved."
+        value={props.todoItem.description}>
+        </textarea>
+        <p>
+          {!props.todoItem.workTime 
+          ? "You haven't logged any time working on this."
+          : workStat}
+        </p>
+        <p className="remove" onClick={props.removeTask(props.todoItem.id)}>
+          <span><i className="material-icons">delete</i></span> Delete this task
+        </p>
       </div>
     );
-  }
 }
 
-export default TodoApp;
+//Input box for adding new todo item
+export function InputForm(props) {
+  return(
+        <form onSubmit={props.handleSubmit}>
+          <input type="text" onChange={props.handleChange} value={props.stateValue} />
+          <button>Add To-Do</button>
+        </form>
+  )
+}
+
+//Renders the list of todo items
+export function TodoList(props) {
+  let list = props.todoList;
+
+  if (props.filter === "undone") {
+    list = list.filter(item => !item.isDone)
+    if (list.length < 1) {
+      //Returns a message when the undone item list is empty
+      return (
+        <EmptyNotifier toggleInput={props.toggleInput}/>
+      )
+    }
+  } else if (props.filter === "done") {
+    list = list.filter(item => item.isDone)
+  }
+
+  return(
+    <ul>
+      <TransitionGroup>
+        {list.map((item, index) => 
+        <CSSTransition key={item.id} timeout={300} classNames="fade">
+          <div className="itemContainer">
+            <li key={item.id} id={item.id}>
+              <span onClick={props.markDone(item.id)} className={"status " + (item.isDone ? "done" : "")}>
+                <i onClick={props.markDone(item.id)} className="material-icons">check_circle</i>
+              </span>
+                {item.title}
+              <span className="expandTask" onClick={props.expandTask(item.id)}>
+                <i className="material-icons">expand_more</i>
+              </span>
+            </li>
+            <TaskDetails todoItem={item} handleDescription={props.handleDescription} removeTask={props.removeTask}/>
+          </div>
+        </CSSTransition>)}
+      </TransitionGroup>
+    </ul>
+  );
+}
+
+export default TodoList;

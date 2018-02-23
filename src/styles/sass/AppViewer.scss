@@ -1,0 +1,23 @@
+.appContainer {
+    grid-area: appWindow;
+    justify-content: center;
+    min-width: 450px;
+    max-width: 450px;
+    min-height: 400px;
+    max-height: 400px;
+    // position: relative;
+    border-radius: 8px;
+    overflow: auto;
+    margin-top: -50px;
+    opacity: 0;
+    font-family: "Source Sans Pro";
+    z-index: -1;
+    transition: all 0.3s;
+    // background-color comes from the app list object in AppAreaContainer;    
+}
+
+.appContainer.active {
+    margin-top: 0;
+    opacity: 1;
+    z-index: 1;
+}

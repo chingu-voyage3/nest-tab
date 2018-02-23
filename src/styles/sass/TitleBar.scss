@@ -1,0 +1,36 @@
+.title-bar {
+    justify-self: stretch;
+    justify-content: space-between;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    h3, p {
+        display: inline-block;
+    }
+    h3 {
+        margin: 0;
+    }
+    p {
+        position: absolute;
+        cursor: pointer;
+        user-select: none;
+        &.input-button {
+            left: 10px;
+            top: -5px;
+            i.active {
+                transform: rotate(135deg);
+            }
+        }
+        &.filter-button {
+            right: 10px;
+            top: -5px;
+            i.active {
+                transform: rotate(180deg);
+            }
+        }
+        i {
+            transition: transform 0.3s ease-in;
+        }
+    }
+}

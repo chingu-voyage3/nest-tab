@@ -1,0 +1,100 @@
+.shelf {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    justify-items: center;
+    font-size: 1rem;
+    .shelfInput {
+        form {
+            input, button {
+                border: none;
+                padding: 10px;
+                font-family: "Source Sans Pro";              
+                outline: none;
+                border: 1px solid #fff;
+                margin-top: 8px;
+            }
+            input {
+                border-radius: 5px 0 0 5px;
+            }
+            button {
+                border-radius: 0 5px 5px 0;
+                background-color: #508EF5;
+                color: #fff;
+            }
+        }
+    }   
+    .shelfList {
+        justify-self: stretch;        
+        ul {
+            padding-left: 0;
+            margin: 0;
+            display: grid;
+            // place-items: center center;
+            .swipe-enter {
+                opacity: 0.01;
+            }
+            .swipe-enter.swipe-enter-active {
+                opacity: 1;
+                transition: all 300ms ease-in;
+            }
+            .swipe-exit {
+                opacity: 1;
+                margin-left: 30px;
+            }
+            .swipe-exit.swipe-exit-active {
+                opacity: 0.1;
+                margin-left: 80px;
+                transition: all 300ms ease-in;
+            }
+            li {
+                width: 80%;
+                position: relative;
+                list-style-type: none;
+                background-color: #fff;
+                margin: 10px auto;
+                padding: 5px 20px 5px 10px;
+                border-radius: 5px;
+                transition: all 0.3s;
+                overflow: hidden;
+                a {
+                    display: block;
+                    font-size: 16px;
+                    text-decoration: none;
+                    color: rgb(0, 117, 190);
+                }
+                a.url {
+                    font-size: 12px;
+                    margin-top: 5px;
+                }
+                a.url-unsolved {
+                    padding: 5px 0;
+                }
+                p {
+                    font-size: 14px;
+                    color: #000;
+                }
+                i {
+                    position: absolute;
+                    top: 5px;
+                    right: -30px;
+                    color: #ccc;
+                    vertical-align: middle;
+                    visibility: hidden;
+                    margin-left: 5px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                }
+                &:hover {
+                    box-shadow: 0 0 8px 2px #e6e6e6;
+                    i {
+                        visibility: visible;
+                        right: 5px;
+                    }
+                    i.done {
+                        color: #1e79e0;
+                    }
+                }
+            }
+        }
+    }
+}
