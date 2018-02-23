@@ -45,7 +45,7 @@ export function TodoList(props) {
     if (list.length < 1) {
       //Returns a message when the undone item list is empty
       return (
-        <EmptyNotifier/>
+        <EmptyNotifier toggleInput={props.toggleInput}/>
       )
     }
   } else if (props.filter === "done") {

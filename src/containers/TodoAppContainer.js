@@ -141,7 +141,7 @@ class TodoAppContainer extends Component {
             {this.state.toggleFilter && <FilterSwitches filterList={this.filterList}/>}
             <TodoList todoList={this.state.todoList} filter={this.state.filter} markDone={this.markDone}
             removeTask={this.removeTask} expandTask={this.expandTask}
-            handleDescription={this.handleDescription}/>
+            handleDescription={this.handleDescription} toggleInput={this.toggleInput}/>
           </div>
         </Scrollbars>
       );
