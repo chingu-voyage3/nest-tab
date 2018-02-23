@@ -10,7 +10,7 @@
 /build
 
 # chrome package private key
-/package/build.pem
+/package/*.pem
 
 # misc
 .DS_Store
