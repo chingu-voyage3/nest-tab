@@ -23,7 +23,7 @@ class App extends Component {
 
   //Fetches a random image to use as background
   fetchImage() {
-    const imageUrl = "https://source.unsplash.com/collection/137627/"+window.screen.width+"x"+window.screen.height;
+    const imageUrl = "https://source.unsplash.com/collection/1781254/"+window.screen.width+"x"+window.screen.height;
 
     fetch(imageUrl)
       .then(response => response.blob())
@@ -45,7 +45,7 @@ class App extends Component {
       defaultImageUrl = "data:image/png;base64,"+localStorage["bgImage"];
     } else {
       //Downloads and saves a random image if nothing exists in localstorage, used on first launch only
-      image2base64("https://source.unsplash.com/random/1366x768")
+      image2base64("https://i.imgur.com/VCOjYrx.jpg")
           .then(response => {
             localStorage.setItem("bgImage", response);
             defaultImageUrl = "data:image/png;base64,"+localStorage["bgImage"];
