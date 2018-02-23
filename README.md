@@ -17,7 +17,7 @@ Introduction
 Download
 -------------------
 
-The packaged extension file can be downloaded [here](https://github.com/faahim/nest-tab/package/nest-tab.crx). Also, An in-browser demo is available [here](https://github.com/faahim/nest-tab/demo/).
+The packaged extension file can be downloaded [here](https://github.com/faahim/nest-tab/package/nest-tab.crx). Also, An in-browser demo is available [here](https://faahim.github.io/nest-tab/demo/).
 I'm planning to submit it in Chrome Web Store as well.
 
 Features
