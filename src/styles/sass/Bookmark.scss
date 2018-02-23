@@ -1,0 +1,95 @@
+.bookmark {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-gap: 5px;
+    justify-items: center;
+    align-items: center;
+    font-size: 1rem;
+    box-sizing: border-box;
+    .title {
+        justify-self: stretch;
+        margin: 0;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px 0;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    .bookmarkList {
+        justify-self: stretch;   
+        overflow: hidden;
+        min-width: 0;
+        h3 {
+            color: #ccc;
+            text-align: center;
+            line-height: 25px;
+            width: 80%;
+            margin: 70px auto 0;
+        }
+        .folder {
+            color: #fff;
+            .folder-wrap {
+                display: inline-block;
+                pointer-events: none;
+                user-select: none;
+                padding: 5px 15px 5px 5px;   
+                margin: 0 5px;
+                border-radius: 25px;
+                transition: background-color 0.3s;
+                .handler {
+                    font-weight: bold;
+                    vertical-align: middle;
+                }
+                i {
+                    vertical-align: middle;
+                    &:first-child {
+                        transform: rotate(90deg);
+                        transition: transform 0.3s;
+                    }
+                    &:nth-child(2) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+            & > .folder-wrap {
+                background-color: #00adec;
+            }
+            ul {
+                border-left: 1px solid #00adec;
+                padding-left: 5px;
+                margin: 10px 10px;
+                li {
+                    list-style-type: none;
+                    a {
+                        display: inline-block;                       
+                        text-decoration: none;   
+                        user-select: none;            
+                        color: #fff;
+                        padding: 8px;
+                        border: 2px solid rgba(0, 0, 0, 0);
+                        border-radius: 5px;
+                        transition: all 0.3s;
+                        &:hover {
+                            background-color: #0f7094;
+                            border: 2px solid #00adec;
+                        }
+                    }
+                }
+            }
+        }
+        .closed {
+            color: #fff;
+            & > .folder-wrap {
+                background-color: rgba(0, 0, 0, 0);
+                i {
+                    &:first-child {
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+            ul {
+                display: none;
+            }
+        }
+    }
+}

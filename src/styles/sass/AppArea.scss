@@ -1,0 +1,12 @@
+.appArea {
+    display: grid;
+    grid-area: app;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 170px;
+    grid-template-areas: 
+        "appWindow"
+        "buttons";
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}

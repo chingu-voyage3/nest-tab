@@ -1,0 +1,30 @@
+{
+  "short_name": "Nest",
+  "name": "Nest - Your new Chrome Home",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "nest-16.png",
+    "default_title": "Click to open Nest Tab"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "bookmarks",
+    "geolocation"
+  ],
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "./background.js"
+    ]
+  },
+  "content_security_policy": "script-src 'self' https://api.darksky.net/; object-src 'self'",
+  "version": "1.0",
+  "icons": {
+    "16": "nest-16.png",
+    "48": "nest-48.png",
+    "128": "nest-128.png"
+  },
+  "author": "Afiur Rahman Fahim"
+}

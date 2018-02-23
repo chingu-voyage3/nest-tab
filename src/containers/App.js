@@ -1,154 +1,84 @@
 import React, { Component } from "react";
 
-import { getBackgroundImage } from "../Components/Background";
-import Bookmark from "../Components/Bookmark";
+import CurrentTime from "../Components/CurrentTime";
+import AppAreaContainer from "./AppAreaContainer";
+import image2base64 from "../utils/imageToBase64";
 import "../styles/App.css";
 
+let defaultImageUrl = "";
+
+//Main container to containing all the apps
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      bgStyle: {
-        backgroundImage: getBackgroundImage(),
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        minHeight: "100vh"
-      },
-      time: this.formatTime(),
-      sidebar: {
-        activeApp: "",
-        showApp: false
-      }
+      fetchedImage: null
     };
 
-    this.changeBackground = this.changeBackground.bind(this);
-    this.switchApp = this.switchApp.bind(this);
+    this.fetchImage = this.fetchImage.bind(this);
+    this.manageLocalImage = this.manageLocalImage.bind(this);
+    this.changeBg = this.changeBg.bind(this);
   }
 
-  changeBackground() {
-    this.setState({
-      bgStyle: {
-        ...this.state.bgStyle,
-        backgroundImage: getBackgroundImage()
-      }
-    });
+  //Fetches a random image to use as background
+  fetchImage() {
+    const imageUrl = "https://source.unsplash.com/collection/1781254/"+window.screen.width+"x"+window.screen.height;
+
+    fetch(imageUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        this.setState({
+          fetchedImage: URL.createObjectURL(blob)
+        }, () => (
+          //Saves fetched image in localstorage to use next time
+          image2base64(imageUrl)
+            .then(response => localStorage.setItem("bgImage", response))
+            .catch(error => console.log(error))
+        ))
+      })
   }
 
-  formatTime() {
-    const currentDate = new Date();
-    const hourString =
-      currentDate.getHours() % 12 === 0 ? "12" : currentDate.getHours() % 12;
-    const minuteString =
-      currentDate.getMinutes() < 10
-        ? "0" + currentDate.getMinutes()
-        : currentDate.getMinutes();
-    const timeString =
-      hourString +
-      ":" +
-      minuteString +
-      (currentDate.getHours() >= 12 ? " PM" : " AM");
-
-    return timeString;
-  }
-
-  tick() {
-    this.setState({
-      time: this.formatTime()
-    });
-  }
-
-  componentDidMount() {
-    this.intervalID = setInterval(() => this.tick(), 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalID);
-  }
-
-  switchApp(e) {
-    let showApp = true;
-    let activeApp = e.target.id;
-
-    // reset active class on icons
-    const appButton = document.querySelectorAll(".appButton");
-    for (let i = 0; i < appButton.length; i++) {
-      if (appButton[i].classList.contains("active")) {
-        appButton[i].classList.remove("active");
-      }
+  manageLocalImage() {
+    if (localStorage['bgImage']) {    
+      //Add data prefix if an image url already exists
+      defaultImageUrl = "data:image/png;base64,"+localStorage["bgImage"];
+    } else {
+      //Downloads and saves a random image if nothing exists in localstorage, used on first launch only
+      image2base64("https://i.imgur.com/VCOjYrx.jpg")
+          .then(response => {
+            localStorage.setItem("bgImage", response);
+            defaultImageUrl = "data:image/png;base64,"+localStorage["bgImage"];
+            this.setState({
+              fetchedImage: defaultImageUrl
+            })
+          })
     }
-
-    // add active class to appButton icon of current activeApp
-    e.target.classList.add("active");
-
-    // reset, closing the app
-    if (e.target.id === this.state.sidebar.activeApp) {
-      showApp = false;
-      activeApp = "";
-      e.target.classList.remove("active");
-    }
-
-    this.setState({
-      sidebar: {
-        ...this.state.sidebar,
-        activeApp,
-        showApp
-      }
-    });
   }
 
-  activeApp() {
-    let app = "";
-    // add your component here in this switch case & import your component above
-    // NOTE: add li in the .appButtons section, see reference below .appButtons section
-    switch (this.state.sidebar.activeApp) {
-      case "BookmarkApp":
-        app = <Bookmark />;
-        break;
-      default:
-        break;
-    }
-    return app;
+  //Triggers the fetchImage method to change background
+  changeBg(event) {
+    this.fetchImage();
+    event.target.classList.toggle("roll");
+  }
+
+  componentWillMount() {
+    this.manageLocalImage();
   }
 
   render() {
+    const background = {
+      backgroundImage: 
+          this.state.fetchedImage ? 
+          "url('"+this.state.fetchedImage+"')" : "url('"+defaultImageUrl+"')"
+    }
     return (
-      <div className="App" style={this.state.bgStyle}>
-        <button className="changeBackground" onClick={this.changeBackground}>
-          <i className="fa fa-refresh" aria-hidden="true" />
+      <div className="App" style={background}>
+        <button className="changeBackground" title="Get a new background image">
+          <i className="material-icons" onClick={this.changeBg}>camera</i>
         </button>
-        <div className="time">{this.state.time}</div>
-        <div className="appButtons">
-          <ul>
-            <li>
-              <i
-                id="TodoApp"
-                className="appButton fa fa-list-alt"
-                aria-hidden="true"
-                onClick={this.switchApp}
-              />
-              <p>Todos</p>
-            </li>
-            <li>
-              <i
-                id="BookmarkApp"
-                className="appButton fa fa-bookmark"
-                aria-hidden="true"
-                onClick={this.switchApp}
-              />
-              <p>Bookmark</p>
-            </li>
-          </ul>
-        </div>
-        <div
-          className="sidebar"
-          style={
-            this.state.sidebar.showApp ? { right: "0px" } : { right: "-400px" }
-          }
-        >
-          {this.activeApp()}
-        </div>
+        <CurrentTime changeBg={this.fetchImage}/>
+        <AppAreaContainer />
       </div>
     );
   }

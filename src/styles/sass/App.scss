@@ -1,65 +1,47 @@
 @import "_normalize";
 
 body {
-  background: #45484d;
-  background: -moz-linear-gradient(top, #45484d 0%, #000000 100%);
-  background: -webkit-linear-gradient(top, #45484d 0%, #000000 100%);
-  background: linear-gradient(to bottom, #45484d 0%, #000000 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(
-      startColorstr="#45484d",
-      endColorstr="#000000",
-      GradientType=0
-    );
+  font-family: 'Oxygen', 'Segoe-UI', sans-serif;
 }
 
-.time {
-  text-transform: uppercase;
-  font-size: 8vw;
-  letter-spacing: 14px;
-  font-weight: bold;
-  text-shadow: 0 2px 6px rgba(57, 57, 57, 0.26);
-  max-width: 680px;
-  margin: 100px auto 50px;
-}
-
-.appButtons {
-  width: 43vw;
-  margin: 0 auto;
-
-  ul {
-    list-style-type: none;
-    overflow: hidden;
-
-    li {
-      float: left;
-      font-size: 3vw;
-      text-align: center;
-      width: (100% / 4);
-      height: 90px;
-      margin-bottom: 30px;
-      i {
-        padding: 5px;
-        text-shadow: 0 2px 6px rgba(57, 57, 57, 0.26);
-      }
-      p {
-        font-size: 15px;
-        letter-spacing: 2px;
-        margin: 0;
-        padding: 0;
-      }
-
-      #BookmarkApp:hover,
-      #BookmarkApp.active {
-        color: #4285f4;
-      }
-    }
+.App {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: darken;
+  transition: background-image 0.6s linear;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+      "time"
+      "app";
+  justify-items: center;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+    background-image: linear-gradient(rgba(44, 62, 80,0.3), rgba(44, 62, 80,0.4))
   }
 }
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  width: 400px;
-  height: 100vh;
-  background-color: #f1f1f1;
+.changeBackground {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  outline: none;
+  i {
+    opacity: 0.5;
+    transition: all 1s ease-in-out;
+    &.roll {
+      transform: rotate(360deg);            
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
