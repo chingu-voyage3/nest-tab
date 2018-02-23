@@ -7,7 +7,7 @@
 * [Tech Stack](https://github.com/faahim/nest-tab#tech-stack)
 * [Development](https://github.com/faahim/nest-tab#development)
 * [Versions](https://github.com/faahim/nest-tab#versions)
-+ [Courtesy](https://github.com/faahim/nest-tab#courtesy)
+* [Courtesy](https://github.com/faahim/nest-tab#courtesy)
 
 Introduction
 ------------------------
