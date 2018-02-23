@@ -11,10 +11,15 @@
         color: #ccc;
         i {
             color: #fff;
+            cursor: pointer;
             vertical-align: middle;
             border: 2px solid #fff;
             border-radius: 50%;
             margin: 0 3px;
+            transition: box-shadow 0.3s;
+            &:hover {
+                box-shadow: 0 0 6px 3px #ffffff85;
+            }
         }
     }
 }
