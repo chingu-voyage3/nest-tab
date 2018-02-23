@@ -30,7 +30,7 @@ Some of the main features of **Nest Tab**:
 + A Bookmark browser that lets you browse all your saved bookmark in quick and easy way and also open them in a new tab.
 + Detects and shows weather information for your current location.
 + Google search from the home screen.
-+ Fetches random wallpapers from the internet. It updates the wallpaper every hour if you leave the tab open. Alternatively, You can it anytime using the _Change Wallpaper_ button on the top left corner.
++ Fetches specially curated wallpapers from the internet. It updates the wallpaper every hour if you leave the tab open. Alternatively, You can update it anytime using the _Change Wallpaper_ button on the top left corner.
 
 More features are in plan to be implemented. If you have any feature idea, please create an issue here.
 
