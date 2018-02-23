@@ -24,7 +24,7 @@ export function ShelfList(props) {
         if (list.length < 1) {
             //Shows error message if the undone item list is empty
             return(
-                <EmptyNotifier/>
+                <EmptyNotifier toggleInput={props.toggleInput}/>
             )
         }
     } else if(props.filter === "done") {

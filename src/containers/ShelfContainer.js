@@ -135,7 +135,7 @@ class ShelfContainer extends Component {
                     {this.state.toggleInput && <ShelfInput value={this.state.inputUrl} handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit} />}
                     {this.state.showFilter && <FilterSwitches filterList={this.filterList}/>}
-                    <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked} filter={this.state.filter}/>
+                    <ShelfList shelfList={this.state.shelfList} markChecked={this.markChecked} filter={this.state.filter} toggleInput={this.toggleInput}/>
                 </div>
             </Scrollbars>
         );
